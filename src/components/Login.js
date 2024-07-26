@@ -25,7 +25,7 @@ function Login({ setToken }) {
       if (response.data.token) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        navigate("/home"); // Başarılı giriş sonrası home sayfasına yönlendirme
+        navigate("/home");
       } else {
         console.error("Token alınamadı");
       }
