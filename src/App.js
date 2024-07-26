@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -6,20 +6,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import Login from "./components/Login";
-import Home from "./components/Home";
-import Machines from "./components/Machines";
-import Users from "./components/Users";
+import Home from "./Home";
 import ProtectedRoute from "./components/ProtectedRoutes";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
 
   return (
     <Router>
@@ -29,21 +20,6 @@ function App() {
         <Route
           path="/home"
           element={<ProtectedRoute element={<Home />} token={token} />}
-        />
-        <Route
-          path="/machines"
-          element={
-            <ProtectedRoute
-              element={<Machines token={token} />}
-              token={token}
-            />
-          }
-        />
-        <Route
-          path="/users"
-          element={
-            <ProtectedRoute element={<Users token={token} />} token={token} />
-          }
         />
       </Routes>
     </Router>
