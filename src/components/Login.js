@@ -30,7 +30,10 @@ function Login({ setToken }) {
         console.error("Token alınamadı");
       }
     } catch (error) {
-      console.error("Giriş hatası:", error);
+      console.error(
+        "Giriş hatası:",
+        error.response ? error.response.data : error.message
+      );
     }
   };
 
