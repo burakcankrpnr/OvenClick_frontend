@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "./AuthContext"; // AuthContext'i içe aktar
+import { useAuth } from "./AuthContext";
 
 function Home() {
   const navigate = useNavigate();
