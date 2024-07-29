@@ -8,6 +8,7 @@ import {
 import Login from "./components/Login";
 import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoutes";
+import Machines from "./components/Machines";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
@@ -21,6 +22,14 @@ function App() {
           element={
             <ProtectedRoute token={token}>
               <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/machines"
+          element={
+            <ProtectedRoute token={token}>
+              <Machines />
             </ProtectedRoute>
           }
         />

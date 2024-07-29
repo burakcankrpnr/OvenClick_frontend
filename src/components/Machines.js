@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const baseURL = "http://localhost:3001";
+
 const Machines = ({ token }) => {
   const [machines, setMachines] = useState([]);
 
   useEffect(() => {
     const fetchMachines = async () => {
       try {
-        const response = await axios.get("/api/machines", {
+        const response = await axios.get(baseURL + "/machines", {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log("Makineler:", response);
         setMachines(response.data);
       } catch (error) {
         console.error("Makineler alınırken hata:", error);
