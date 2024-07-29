@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import "../styles/Home.css";
 
 function Home() {
   const navigate = useNavigate();
@@ -13,10 +14,12 @@ function Home() {
   };
 
   return (
-    <div>
-      <h2>Home Page</h2>
-      <p>Welcome to the home page!</p>
-      <button onClick={handleLogout}>Çıkış Yap</button>
+    <div className="home-container">
+      <h2 className="home-header">Home Page</h2>
+      <p className="home-paragraph">Welcome to the home page!</p>
+      <button className="home-button" onClick={handleLogout}>
+        Çıkış Yap
+      </button>
     </div>
   );
 }

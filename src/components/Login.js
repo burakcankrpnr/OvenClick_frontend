@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../styles/Login.css"; // CSS dosyasını içe aktar
 
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
@@ -16,7 +17,6 @@ function Login({ setToken }) {
     };
 
     try {
-      console.log(username, password);
       const response = await axios.post(
         "http://localhost:3001/auth/login",
         credentials
@@ -38,26 +38,30 @@ function Login({ setToken }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login-container">
       <div>
-        <label>Kullanıcı Adı:</label>
+        <label className="login-label">Kullanıcı Adı</label>
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="login-input"
           required
         />
       </div>
       <div>
-        <label>Şifre:</label>
+        <label className="login-label">Şifre</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="login-input"
           required
         />
       </div>
-      <button type="submit">Giriş Yap</button>
+      <button type="submit" className="login-button">
+        Giriş Yap
+      </button>
     </form>
   );
 }
