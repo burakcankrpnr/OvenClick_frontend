@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "../styles/Login.css"; // CSS dosyasını içe aktar
+import "../styles/Login.css";
+import { FaKey } from "react-icons/fa";
+import { AiOutlineUser } from "react-icons/ai";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
@@ -37,32 +39,49 @@ function Login({ setToken }) {
     }
   };
 
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   return (
-    <form onSubmit={handleSubmit} className="login-container">
-      <div>
-        <label className="login-label">Kullanıcı Adı</label>
-        <input
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="login-input"
-          required
-        />
-      </div>
-      <div>
-        <label className="login-label">Şifre</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="login-input"
-          required
-        />
-      </div>
-      <button type="submit" className="login-button">
-        Giriş Yap
-      </button>
-    </form>
+    <div className="login-container">
+      <form onSubmit={handleSubmit} className="login-form">
+        <div className="login-item">
+          <span className="login-label">
+            <AiOutlineUser /> Kullanıcı Adı
+          </span>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="login-input"
+            required
+          />
+        </div>
+        <div className="login-item">
+          <span>
+            <FaKey /> Şifre
+          </span>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="login-input"
+            required
+          />
+        </div>
+        <button type="submit" className="login-button">
+          Giriş Yap
+        </button>
+        <button
+          type="button"
+          className="register-button"
+          onClick={handleRegister}
+        >
+          Kayıt Ol
+        </button>
+      </form>
+    </div>
   );
 }
 

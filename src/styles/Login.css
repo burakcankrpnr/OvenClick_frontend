@@ -1,58 +1,87 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  height: 100vh;
+}
+
 .login-container {
-    max-width: 500px;
-    margin: auto;
-    padding: 40px;
-    border: 10px solid #ddd;
-    border-radius: 5px;
-    text-align: center; 
-    margin: 20px auto;
-    border-radius: 3%;
-    border-color: #362b3b;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    margin: 400px auto;
+  background-image: url("../../public/Colored\ Shapes.svg"); 
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
-   }
-  
-  .login-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-style: italic;
-    color: #140f0f;
-    margin-top: 10px;
-    font-size: x-large;
-    border-radius: 10px;
+.login-form {
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border-radius: 8px;
+  backdrop-filter: blur(30px);
+}
 
-  }
-  
-  .login-input {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #000000;
-    border-style: solid;
-    border-radius: 4px;
-    margin: auto;
+.login-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0;
+  margin: 5px;
+  min-width: 350px;
+}
 
-  }
-  
-  .login-button {
-    background-color: #242527;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: auto;
-    margin-top: 20px;
-  }
-  
-  .login-button:hover {
-    background-color: #020202d8;
-    box-shadow: 0 0 5px #333;
-  }
-  
+.login-item span {
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1rem;
+  margin: 5px 2px;
+  font-weight: 400;
+  padding: 0;
+}
+
+.login-item span svg {
+  margin-right: 8px;
+}
+
+.login-input {
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  border: none;
+  margin: 5px 0;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffff;
+}
+
+.login-input:hover {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.login-button, .register-button {
+  width: 100%;
+  margin: 10px;
+  border-radius: 50px;
+  background-color: #0c6e38;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.register-button {
+  background-color: #5c5c5c;
+  margin: 3%;
+}
+
+.register-button:hover {
+  background-color: #7c7c7c; 
+}

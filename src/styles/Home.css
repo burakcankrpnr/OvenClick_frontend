@@ -1,14 +1,24 @@
+body{
+  background-image: url("../../public/Colored\ Shapes.svg"); 
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .home-container {
     padding: 20px;
     text-align: center;
     margin: 20px auto;
-    display:block;
-
+    width: 50%;
   }
-  
+
   .home-header {
     font-size: 2rem;
-    color: #333;
+    color: #000000;
   }
   
   .home-paragraph {
@@ -17,7 +27,7 @@
   }
   
   .home-button {
-    background-color: #007bff;
+    background-color: #ff0000;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -27,7 +37,7 @@
   }
   
   .home-button:hover {
-    background-color: #465769;
-    box-shadow: 0 0 5px #333;
+    background-color: #000000;
+    box-shadow: 0 0 20px #000000;
   }
   
