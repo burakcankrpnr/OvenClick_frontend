@@ -15,12 +15,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route
-          path="/home"
-          element={<ProtectedRoute element={<Home />} token={token} />}
-        />
+        <Route element={<ProtectedRoute element={<Home />} token={token} />}>
+          <Route path="/home" element={<Navigate to="/home" />} />
+          <Route path="/" element={<Navigate to="/home" />} />
+        </Route>
       </Routes>
     </Router>
   );
