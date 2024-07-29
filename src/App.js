@@ -16,10 +16,15 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route element={<ProtectedRoute element={<Home />} token={token} />}>
-          <Route path="/home" element={<Navigate to="/home" />} />
-          <Route path="/" element={<Navigate to="/home" />} />
-        </Route>
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute token={token}>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/" element={<Navigate to="/home" />} />
       </Routes>
     </Router>
   );
