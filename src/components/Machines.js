@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import Sidebar from "./Sidebar";
+import "../styles/Machines.css";
 
 const baseURL = "http://localhost:3001";
 
