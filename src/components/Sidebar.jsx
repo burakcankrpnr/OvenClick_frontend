@@ -1,14 +1,14 @@
-// components/Sidebar.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaHome, FaList, FaSignOutAlt, FaUser } from "react-icons/fa";
-import "../styles/Sidebar.css"; // Stil dosyasını import edelim
+import "../styles/Sidebar.css"; 
 
 const Sidebar = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   return (
     <div
+      
       className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}
       onMouseEnter={() => setIsSidebarOpen(true)}
       onMouseLeave={() => setIsSidebarOpen(false)}

@@ -1,0 +1,15 @@
+{
+  "owner_id": 3,
+  "machine_name": "deneme1",
+  "details": {
+    "temprature": 25,
+    "humidity": 50,
+    "vibration": 0.5,
+    "pressure": 1000,
+    "current": 0.5,
+    "voltage": 220,
+    "power": 100,
+    "energy": 1000,
+    "status": "running"
+  }
+}

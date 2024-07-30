@@ -1,9 +1,9 @@
 .sidebar {
-  width: 120px; /* Kapalı durumdaki genişlik */
-  height: 100vh;
-  background: #b1aeae;
+  width: 200px;
+  height: 120vh;
+  background: #cccccc;
   padding: 10px;
-  box-shadow: 3px 0 2px rgba(185, 171, 171, 0.1);
+  box-shadow: 3px 0 2px rgba(255, 255, 255, 0.1);
   position: fixed;
   left: 0;
   top: 0;
@@ -32,7 +32,7 @@
 }
 
 .icon {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .logout-button {
