@@ -30,9 +30,9 @@ const Sidebar = ({ onLogout }) => {
           </Link>
         </li>
         <li>
-          <button className="logout-button" onClick={onLogout}>
-            <FaSignOutAlt className="icon" /> Logout
-          </button>
+          <Link to="/login" className="link" onClick={onLogout}>
+          <FaSignOutAlt className="icon" /> Logout
+          </Link>
         </li>
       </ul>
     </div>

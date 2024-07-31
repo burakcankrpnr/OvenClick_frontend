@@ -1,4 +1,3 @@
-// app.js
 import React, { useState } from "react";
 import {
   BrowserRouter as Router,
@@ -13,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
+import SearchBar from "./components/Searchbar";
 import "./App.css";
 
 const Layout = ({ children }) => {
@@ -20,16 +20,22 @@ const Layout = ({ children }) => {
   const showSidebar = !["/login"].includes(location.pathname);
 
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ display: "flex", height: "100vh" }}>
       {showSidebar && <Sidebar />}
       <div
         style={{
-          marginLeft: showSidebar ? "250px" : "0",
-          padding: "20px",
+          marginLeft: showSidebar ? "195px" : "0px",
           width: "100%",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        {children}
+        <div style={{ display: "flow", alignItems: "center", padding: "10px" }}>
+          {showSidebar && <SearchBar />}
+        </div>
+        <div style={{ flex: 1, padding: "0px", overflowY: "auto" }}>
+          {children}
+        </div>
       </div>
     </div>
   );
