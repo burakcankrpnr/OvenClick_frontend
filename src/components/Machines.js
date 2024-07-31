@@ -50,10 +50,10 @@ const Machines = ({ token }) => {
                   <FaCalendarAlt className="mr-2" />
                   Updated Date: {new Date(machine.updated_at).toLocaleString()}
                 </p>
-                <p className="card-text">
+                {/* <p className="card-text">
                   <FaInfoCircle className="mr-2" />
                   Details
-                </p>
+                </p> */}
                 <p className="card-text status-text">
                   <FaCircle
                     className={`mr-2 ${
