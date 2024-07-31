@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import "../styles/Users.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+const baseURL = "http://localhost:3001";
 
 const Users = ({ token }) => {
   const [users, setUsers] = useState([]);
@@ -7,12 +12,16 @@ const Users = ({ token }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/api/users", {
+        const response = await axios.get(`${baseURL}/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log("Kullanıcılar:", response.data);
         setUsers(response.data);
       } catch (error) {
-        console.error("Kullanıcılar alınırken hata:", error);
+        console.error(
+          "Kullanıcılar alınırken hata:",
+          error.response ? error.response.data : error.message
+        );
       }
     };
 
@@ -20,13 +29,43 @@ const Users = ({ token }) => {
   }, [token]);
 
   return (
-    <div>
+    <div className="users-container">
       <h1>Kullanıcılar</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.user_id}>{user.username}</li>
-        ))}
-      </ul>
+      <table className="users-table">
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.user_id}>
+              <td>{user.user_id}</td>
+              <td>{user.username}</td>
+              <td>{user.password}</td>
+              <td>{user.role}</td>
+              <td>{user.email}</td>
+              <td>{user.created_at}</td>
+              <td>{user.updated_at}</td>
+              <td className="action-buttons">
+                <button className="edit-button">
+                  <FaEdit />
+                </button>
+                <button className="delete-button">
+                  <FaTrash />
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };

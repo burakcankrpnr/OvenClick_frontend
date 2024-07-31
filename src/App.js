@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import Login from "./components/Login";
-import Home from "./components/Home";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
 import Users from "./components/Users";
@@ -49,21 +48,11 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
         <Route
-          path="/home"
-          element={
-            <ProtectedRoute token={token}>
-              <Layout>
-                <Home />
-              </Layout>
-            </ProtectedRoute>
-          }
-        />
-        <Route
           path="/machines"
           element={
             <ProtectedRoute token={token}>
               <Layout>
-                <Machines />
+                <Machines authToken={token} />
               </Layout>
             </ProtectedRoute>
           }
@@ -73,12 +62,12 @@ function App() {
           element={
             <ProtectedRoute token={token}>
               <Layout>
-                <Users />
+                <Users token={token} />
               </Layout>
             </ProtectedRoute>
           }
         />
-        <Route path="/" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Navigate to="/machines" />} />
       </Routes>
     </Router>
   );

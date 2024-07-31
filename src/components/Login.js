@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { FaKey } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
+import "../components/Machines";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
@@ -27,7 +28,8 @@ function Login({ setToken }) {
       if (response.data.token) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        navigate("/home");
+        // Burada yönlendirme yapıyoruz
+        navigate("/machines");
       } else {
         console.error("Token alınamadı");
       }

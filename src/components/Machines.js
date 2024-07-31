@@ -1,23 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  FaCircle,
-  FaDesktop,
-  FaCalendarAlt,
-  FaInfoCircle,
-} from "react-icons/fa";
+import { FaCircle, FaDesktop, FaCalendarAlt } from "react-icons/fa";
 import "../styles/Machines.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 const baseURL = "http://localhost:3001";
 
-const Machines = ({ token }) => {
+const Machines = ({ authToken }) => {
   const [machines, setMachines] = useState([]);
 
   useEffect(() => {
     const fetchMachines = async () => {
       try {
         const response = await axios.get(baseURL + "/machines", {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${authToken}` },
         });
         console.log("Makineler:", response);
         setMachines(response.data);
@@ -27,7 +22,7 @@ const Machines = ({ token }) => {
     };
 
     fetchMachines();
-  }, [token]);
+  }, [authToken]);
 
   return (
     <div className="container-fluid">

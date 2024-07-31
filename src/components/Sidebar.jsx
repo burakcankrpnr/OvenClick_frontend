@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaHome, FaList, FaSignOutAlt, FaUser } from "react-icons/fa";
+import {  FaList, FaSignOutAlt, FaUser } from "react-icons/fa";
 import "../styles/Sidebar.css"; 
 
 const Sidebar = ({ onLogout }) => {
@@ -14,11 +14,6 @@ const Sidebar = ({ onLogout }) => {
       onMouseLeave={() => setIsSidebarOpen(false)}
     >
       <ul className="menu">
-        <li className={location.pathname === "/home" ? "active" : ""}>
-          <Link to="/home" className="link">
-            <FaHome className="icon" /> Home
-          </Link>
-        </li>
         <li className={location.pathname === "/machines" ? "active" : ""}>
           <Link to="/machines" className="link">
             <FaList className="icon" /> Machines

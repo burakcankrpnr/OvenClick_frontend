@@ -1,10 +1,7 @@
 .container-fluid {
-  padding: 0 2px;
-  overflow-x: hidden;
+  padding: 10px;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed; /* Sayfa kaydırıldığında arka plan resmi sabit kalır */
   min-height: 100vh;
   min-width: 100vh; /* Sayfa yüksekliği kadar uzanır */
 }
