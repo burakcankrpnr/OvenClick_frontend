@@ -116,7 +116,7 @@
 }
 
 .add-user-button {
-  background-color: #28a745; /* Green color */
+  background-color: #28a745;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -128,11 +128,11 @@
 }
 
 .add-user-button:hover {
-  background-color: #218838; /* Darker green on hover */
+  background-color: #218838;
 }
 
 .add-user-button svg {
-  margin-right: 8px; /* Space between icon and text */
+  margin-right: 8px;
 }
 
 .add-machine-form input {
