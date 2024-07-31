@@ -1,9 +1,9 @@
 .container-fluid {
-  padding: 10px;
+  padding: 20px;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
-  min-width: 100vh; /* Sayfa yüksekliği kadar uzanır */
+  min-width: 100vh;
 }
 
 .machine-card {
@@ -65,9 +65,42 @@
 }
 
 .status-text .text-success {
-  color: green;
+  color: #28a745;
 }
 
 .status-text .text-danger {
   color: red;
+}
+
+/* Yeni eklemeler */
+.machine-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.action-button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+  margin: 0 5px;
+}
+
+.action-button:hover {
+  opacity: 0.8;
+}
+
+.add-machine-button {
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-machine-button:hover {
+  background-color: #28a745;
 }
