@@ -30,7 +30,7 @@ const Users = ({ token }) => {
 
   return (
     <div className="users-container">
-      <h1>Kullanıcılar</h1>
+      <h1>Users</h1>
       <table className="users-table">
         <thead>
           <tr>
@@ -52,8 +52,8 @@ const Users = ({ token }) => {
               <td>{user.password}</td>
               <td>{user.role}</td>
               <td>{user.email}</td>
-              <td>{user.created_at}</td>
-              <td>{user.updated_at}</td>
+              <td>{new Date(user.created_at).toLocaleString()}</td>
+              <td>{new Date(user.updated_at).toLocaleString()}</td>
               <td className="action-buttons">
                 <button className="edit-button">
                   <FaEdit />
