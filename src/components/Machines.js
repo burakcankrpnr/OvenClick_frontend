@@ -62,7 +62,7 @@ const Machines = ({ authToken }) => {
     }
   };
 
-  const handleEditMachine = async () => {
+  const handleUpdateMachine = async () => {
     if (editMachine) {
       try {
         console.log("Güncellenecek makine:", editMachine);
@@ -152,7 +152,7 @@ const Machines = ({ authToken }) => {
       )}
       {showEditForm && editMachine && (
         <div className="edit-machine-form">
-          <h2>Edit Machine</h2>
+          <h2>Update Machine</h2>
           <input
             type="text"
             placeholder="Machine Name"
@@ -177,7 +177,7 @@ const Machines = ({ authToken }) => {
               setEditMachine({ ...editMachine, details: e.target.value })
             }
           />
-          <button className="btn btn-primary" onClick={handleEditMachine}>
+          <button className="btn btn-primary" onClick={handleUpdateMachine}>
             Update
           </button>
           <button
@@ -216,9 +216,9 @@ const Machines = ({ authToken }) => {
                   />
                   {machine.actions ? "Online" : "Offline"}
                 </p>
-                <div className="action-buttons">
+                <div className="machine-actions">
                   <button
-                    className="btn btn-warning action-button"
+                    className="action-button edit-button"
                     onClick={() => {
                       setEditMachine(machine);
                       setShowEditForm(true);
@@ -227,7 +227,7 @@ const Machines = ({ authToken }) => {
                     <FaEdit />
                   </button>
                   <button
-                    className="btn btn-danger action-button"
+                    className="action-button delete-button"
                     onClick={() => handleDeleteMachine(machine.machine_id)}
                   >
                     <FaTrash />

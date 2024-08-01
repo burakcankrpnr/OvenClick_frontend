@@ -11,8 +11,7 @@
   overflow-x: initial;
 }
 
-/* 
-.sidebar.open {
+/* .sidebar.open {
   width: 160px;
   padding: 15px;
 } */
@@ -53,7 +52,7 @@
 
 .logout-button {
   background: none;
-  border: none;
+  border: #000;
   color: #0e0b0b;
   cursor: pointer;
   display: flex;
