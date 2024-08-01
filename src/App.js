@@ -9,6 +9,7 @@ import {
 import Login from "./components/Login";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
+import MachineDetails from "./components/MachineDetails"; // New component
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
 import SearchBar from "./components/Searchbar";
@@ -53,6 +54,16 @@ function App() {
             <ProtectedRoute token={token}>
               <Layout>
                 <Machines authToken={token} />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/machines/:machine_id"
+          element={
+            <ProtectedRoute token={token}>
+              <Layout>
+                <MachineDetails authToken={token} />
               </Layout>
             </ProtectedRoute>
           }

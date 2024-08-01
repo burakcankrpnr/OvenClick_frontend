@@ -1,0 +1,64 @@
+.machine-details-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.machine-details h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.machine-details button {
+  margin-bottom: 20px;
+}
+
+.machine-details .machine-details {
+  padding: 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.machine-details .machine-details h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.machine-details .machine-details p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.machine-details .machine-details p strong {
+  font-weight: 600;
+}
+
+.machine-details .machine-details p.status-text {
+  display: flex;
+  align-items: center;
+}
+
+.machine-details .machine-details p.status-text .fa-circle {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+.machine-details .machine-details p.status-text.text-success .fa-circle {
+  color: #28a745;
+}
+
+.machine-details .machine-details p.status-text.text-danger .fa-circle {
+  color: #dc3545;
+}
+
+@media (max-width: 768px) {
+  .machine-details-container {
+    padding: 15px;
+  }
+
+  .machine-details .machine-details {
+    padding: 10px;
+  }
+}

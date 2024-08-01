@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   FaCircle,
   FaDesktop,
@@ -10,10 +11,12 @@ import {
 } from "react-icons/fa";
 import "../styles/Machines.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useNavigate } from "react-router-dom";
 
 const baseURL = "http://localhost:3001";
 
 const Machines = ({ authToken }) => {
+  const navigate = useNavigate();
   const [machines, setMachines] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newMachine, setNewMachine] = useState({ machine_name: "" });
@@ -23,7 +26,7 @@ const Machines = ({ authToken }) => {
   useEffect(() => {
     const fetchMachines = async () => {
       try {
-        const response = await axios.get(baseURL + "/machines", {
+        const response = await axios.get(`${baseURL}/machines`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
         console.log("Makineler:", response.data);
@@ -53,7 +56,7 @@ const Machines = ({ authToken }) => {
       console.log("Makine eklendi:", response.data);
       setNewMachine({ machine_name: "", owner_id: "", details: "" });
       setShowAddForm(false);
-      const fetchResponse = await axios.get(baseURL + "/machines", {
+      const fetchResponse = await axios.get(`${baseURL}/machines`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setMachines(fetchResponse.data);
@@ -76,7 +79,7 @@ const Machines = ({ authToken }) => {
         console.log("Makine güncellendi:", response.data);
         setEditMachine(null);
         setShowEditForm(false);
-        const fetchResponse = await axios.get(baseURL + "/machines", {
+        const fetchResponse = await axios.get(`${baseURL}/machines`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
         setMachines(fetchResponse.data);
@@ -86,14 +89,14 @@ const Machines = ({ authToken }) => {
     }
   };
 
-  const handleDeleteMachine = async (machineId) => {
+  const handleDeleteMachine = async (machine_id) => {
     try {
-      console.log("Silinecek makine ID:", machineId);
-      await axios.delete(`${baseURL}/machines/${machineId}`, {
+      console.log("Silinecek makine ID:", machine_id);
+      await axios.delete(`${baseURL}/machines/${machine_id}`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
       setMachines(
-        machines.filter((machine) => machine.machine_id !== machineId)
+        machines.filter((machine) => machine.machine_id !== machine_id)
       );
     } catch (error) {
       console.error("Makine silinirken hata:", error);
@@ -217,6 +220,14 @@ const Machines = ({ authToken }) => {
                   {machine.actions ? "Online" : "Offline"}
                 </p>
                 <div className="machine-actions">
+                  <button
+                    onClick={() => {
+                      navigate("/machines/" + machine.machine_id);
+                    }}
+                    className="btn btn-info"
+                  >
+                    Details
+                  </button>
                   <button
                     className="action-button edit-button"
                     onClick={() => {
