@@ -16,9 +16,9 @@
 
 .machine-details .machine-details {
   padding: 15px;
-  background-color: #ffffff;
+  background-color: #000000;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(255, 253, 253, 0.1);
 }
 
 .machine-details .machine-details h2 {
@@ -61,4 +61,7 @@
   .machine-details .machine-details {
     padding: 10px;
   }
+}
+.machine-details-container .btn btn-secondary {
+  background-color: #e9bdbd;
 }

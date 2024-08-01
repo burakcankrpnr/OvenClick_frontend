@@ -7,9 +7,10 @@ import {
   useLocation,
 } from "react-router-dom";
 import Login from "./components/Login";
+import Register from "./components/Register"; // Import Register component
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
-import MachineDetails from "./components/MachineDetails"; // New component
+import MachineDetails from "./components/MachineDetails";
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
 import SearchBar from "./components/Searchbar";
@@ -17,7 +18,7 @@ import "./App.css";
 
 const Layout = ({ children }) => {
   const location = useLocation();
-  const showSidebar = !["/login"].includes(location.pathname);
+  const showSidebar = !["/login", "/register"].includes(location.pathname);
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
@@ -48,6 +49,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
+        <Route path="/register" element={<Register />} /> {}
         <Route
           path="/machines"
           element={

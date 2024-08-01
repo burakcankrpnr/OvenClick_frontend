@@ -128,7 +128,7 @@
 }
 
 .add-user-button:hover {
-  background-color: #218838;
+  background-color: #000000;
 }
 
 .add-user-button svg {
@@ -140,4 +140,13 @@
   width: 100%;
   margin-bottom: 10px;
   padding: 8px;
+}
+
+.add-user-form-container .cancel-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.add-user-form-container .cancel-button:hover {
+  background-color: #c82333;
 }

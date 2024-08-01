@@ -19,7 +19,7 @@ const MachineDetails = ({ authToken }) => {
         const response = await axios.get(`${baseURL}/machines/${machine_id},`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
-
+        console.log("Machine details:", response.data);
         setMachine(response.data);
       } catch (error) {
         console.error("Error fetching machine details:", error);

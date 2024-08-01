@@ -17,6 +17,7 @@ const Users = ({ token }) => {
   const [showAddUserForm, setShowAddUserForm] = useState(false);
   const [editUser, setEditUser] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -24,7 +25,6 @@ const Users = ({ token }) => {
         const response = await axios.get(`${baseURL}/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("Kullanıcılar:", response.data);
         setUsers(response.data);
       } catch (error) {
         console.error(
@@ -51,7 +51,52 @@ const Users = ({ token }) => {
     }
   };
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
+    return password.length >= minLength && specialCharRegex.test(password);
+  };
+
+  const validateUsername = (username) => {
+    const usernameRegex = /^[a-zA-Z0-9_]+$/; // Only allows letters, numbers, and underscores
+    return usernameRegex.test(username);
+  };
+
   const handleAddUser = async () => {
+    if (!validateUsername(newUser.username)) {
+      alert(
+        "Kullanıcı adı sadece harfler, rakamlar ve alt çizgi (_) içerebilir."
+      );
+      return;
+    }
+
+    if (!validateEmail(newUser.email)) {
+      alert("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
+    if (!validatePassword(newUser.password)) {
+      alert(
+        "Şifre en az 8 karakter uzunluğunda olmalı ve en az 1 özel karakter içermelidir."
+      );
+      return;
+    }
+
+    if (
+      !newUser.username ||
+      !newUser.password ||
+      !newUser.role ||
+      !newUser.email
+    ) {
+      alert("Kullanıcı adı, şifre, rol ve email boş bırakılamaz!");
+      return;
+    }
+
     try {
       await axios.post(`${baseURL}/user`, newUser, {
         headers: { Authorization: `Bearer ${token}` },
@@ -62,6 +107,7 @@ const Users = ({ token }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data);
+      setErrorMessage(""); // Hata mesajını temizle
     } catch (error) {
       console.error(
         "Kullanıcı eklenirken hata:",
@@ -72,6 +118,35 @@ const Users = ({ token }) => {
 
   const handleEditUser = async () => {
     if (editUser) {
+      if (
+        !editUser.username ||
+        !editUser.password ||
+        !editUser.role ||
+        !editUser.email
+      ) {
+        alert("Kullanıcı adı, şifre, rol ve email boş bırakılamaz!");
+        return;
+      }
+
+      if (!validateUsername(editUser.username)) {
+        alert(
+          "Kullanıcı adı sadece harfler, rakamlar ve alt çizgi (_) içerebilir."
+        );
+        return;
+      }
+
+      if (!validateEmail(editUser.email)) {
+        alert("Geçerli bir e-posta adresi girin.");
+        return;
+      }
+
+      if (!validatePassword(editUser.password)) {
+        alert(
+          "Şifre en az 8 karakter uzunluğunda olmalı ve en az 1 özel karakter içermelidir."
+        );
+        return;
+      }
+
       try {
         await axios.put(`${baseURL}/user/${editUser.user_id}`, editUser, {
           headers: { Authorization: `Bearer ${token}` },
@@ -82,6 +157,7 @@ const Users = ({ token }) => {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUsers(response.data);
+        setErrorMessage("");
       } catch (error) {
         console.error(
           "Kullanıcı güncellenirken hata:",
@@ -92,7 +168,10 @@ const Users = ({ token }) => {
   };
 
   const handleEditButtonClick = (user) => {
-    setEditUser(user);
+    setEditUser({
+      ...user,
+      password: "", // Şifreyi boş bırakıyoruz ki kullanıcı yeni bir şifre girebilsin
+    });
     setShowEditForm(true);
   };
 
@@ -105,6 +184,7 @@ const Users = ({ token }) => {
       >
         <FaPlus /> {showAddUserForm ? "Cancel" : "Add User"}
       </button>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       {showAddUserForm && (
         <div className="add-user-form-container">
           <h2>Add New User</h2>

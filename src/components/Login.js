@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 import { FaKey } from "react-icons/fa";
 import { AiOutlineUser } from "react-icons/ai";
-import "../components/Machines";
 
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
@@ -28,16 +27,21 @@ function Login({ setToken }) {
       if (response.data.token) {
         setToken(response.data.token);
         localStorage.setItem("token", response.data.token);
-        // Burada yönlendirme yapıyoruz
         navigate("/machines");
       } else {
         console.error("Token alınamadı");
+        alert("Kullanıcı adı veya şifre hatalı!");
+        setUsername("");
+        setPassword("");
       }
     } catch (error) {
-      console.error(
-        "Giriş hatası:",
-        error.response ? error.response.data : error.message
-      );
+      if (error.response && error.response.status === 401) {
+        alert("Kullanıcı adı veya şifre hatalı!");
+      } else {
+        alert("Giriş hatası: Lütfen tekrar deneyin.");
+      }
+      setUsername("");
+      setPassword("");
     }
   };
 
