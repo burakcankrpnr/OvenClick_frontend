@@ -81,7 +81,6 @@
 .machine-actions {
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 }
 .edit-button {
   color: #000000;
