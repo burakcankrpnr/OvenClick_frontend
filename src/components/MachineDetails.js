@@ -27,7 +27,7 @@ const MachineDetails = ({ authToken }) => {
     };
 
     fetchMachineDetails();
-  }, [machine_id]);
+  }, [machine_id, authToken]);
 
   if (!machine) {
     return <div> Loading...</div>;
