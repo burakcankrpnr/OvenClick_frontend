@@ -22,7 +22,13 @@ const Layout = ({ children }) => {
 
   return (
     <div style={{ display: "flex", height: "100vh" }}>
-      {showSidebar && <Sidebar />}
+      {showSidebar && (
+        <Sidebar
+          onLogout={() => {
+            localStorage.removeItem("token");
+          }}
+        />
+      )}
       <div
         style={{
           marginLeft: showSidebar ? "195px" : "0px",

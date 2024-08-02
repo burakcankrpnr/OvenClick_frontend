@@ -11,11 +11,6 @@
   overflow-x: initial;
 }
 
-/* .sidebar.open {
-  width: 160px;
-  padding: 15px;
-} */
-
 .menu {
   list-style-type: none;
   padding: 0;
@@ -24,6 +19,13 @@
 
 .menu li {
   margin-bottom: 5px;
+}
+
+.top-icon {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .link {

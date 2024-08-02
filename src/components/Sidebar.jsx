@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import {  FaList, FaSignOutAlt, FaUser } from "react-icons/fa";
-import "../styles/Sidebar.css"; 
+import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers } from "react-icons/fa";
+import "../styles/Sidebar.css";
 
 const Sidebar = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,6 +14,10 @@ const Sidebar = ({ onLogout }) => {
       onMouseLeave={() => setIsSidebarOpen(false)}
     >
       <ul className="menu">
+        <li className="top-icon">
+          <FaCogs className="icon" />
+          <FaUsers className="icon" />
+        </li>
         <li className={location.pathname === "/machines" ? "active" : ""}>
           <Link to="/machines" className="link">
             <FaList className="icon" /> Machines
@@ -35,4 +39,3 @@ const Sidebar = ({ onLogout }) => {
 };
 
 export default Sidebar;
-
