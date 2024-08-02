@@ -282,7 +282,7 @@ const Users = ({ token }) => {
               <div className="info-item">
                 <FaCalendarDay className="info-icon" />
                 <p>
-                  <strong>Updated At:</strong>{" "}
+                  <strong>Update At:</strong>{" "}
                   {new Date(user.updated_at).toLocaleString()}
                 </p>
               </div>
