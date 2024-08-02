@@ -1,7 +1,5 @@
 .container-fluid {
-  padding: 20px;
-  margin-left: 10px !important;
-  margin-right: 10px !important;
+  padding: 30px !important;
 }
 
 .machine-card {

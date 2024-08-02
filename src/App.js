@@ -7,7 +7,7 @@ import {
   useLocation,
 } from "react-router-dom";
 import Login from "./components/Login";
-import Register from "./components/Register"; // Import Register component
+import Register from "./components/Register";
 import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
 import MachineDetails from "./components/MachineDetails";
@@ -55,7 +55,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/login" element={<Login setToken={setToken} />} />
-        <Route path="/register" element={<Register />} /> {}
+        <Route path="/register" element={<Register />} />
         <Route
           path="/machines"
           element={

@@ -8,7 +8,7 @@ import {
   FaEnvelope,
   FaIdBadge,
   FaCalendarDay,
-  FaLock, // Şifre için ikon
+  FaLock,
 } from "react-icons/fa";
 import "../styles/Users.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -61,7 +61,6 @@ const Users = ({ token }) => {
   };
 
   const handleAddUser = async () => {
-    // Validation logic here...
     try {
       await axios.post(`${baseURL}/user`, newUser, {
         headers: { Authorization: `Bearer ${token}` },
@@ -82,7 +81,6 @@ const Users = ({ token }) => {
   };
 
   const handleEditUser = async () => {
-    // Validation logic here...
     try {
       await axios.put(`${baseURL}/user/${editUser.user_id}`, editUser, {
         headers: { Authorization: `Bearer ${token}` },
@@ -105,7 +103,7 @@ const Users = ({ token }) => {
   const handleEditButtonClick = (user) => {
     setEditUser({
       ...user,
-      password: "", // Optional: clear password for security reasons
+      password: "",
     });
     setShowEditForm(true);
   };

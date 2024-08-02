@@ -76,6 +76,7 @@ const Machines = ({ authToken }) => {
       const fetchResponse = await axios.get(`${baseURL}/machines`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
+
       setMachines(fetchResponse.data);
     } catch (error) {
       console.error("Makine eklenirken hata:", error);

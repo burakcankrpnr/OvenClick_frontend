@@ -9,7 +9,7 @@ const Sidebar = ({ onLogout }) => {
 
   return (
     <div
-      className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}
+      className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}
       onMouseEnter={() => setIsSidebarOpen(true)}
       onMouseLeave={() => setIsSidebarOpen(false)}
     >
