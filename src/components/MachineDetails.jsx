@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import { FaUser, FaIdCard, FaInfoCircle, FaCalendarAlt, FaSyncAlt, FaCircle, FaArrowLeft } from 'react-icons/fa';
 import "../styles/MachineDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -32,41 +33,42 @@ const MachineDetails = ({ authToken }) => {
 
   return (
     <div className="machine-details-container">
-            <button className="btn btn-secondary" onClick={() => navigate(-1)}>
-        Go Back
+      <button className="btn btn-secondary" onClick={() => navigate(-1)}>
+        <FaArrowLeft /> Go Back
       </button>
-      <h1>Machine Details</h1>
-
+      <h1>{machine.machine_name}</h1>
       <div className="machine-details">
-        <div>
-          <h2>{machine.machine_name}</h2>
-          <p>
-            <strong>Owner ID:</strong> {machine.owner_id}
-          </p>
-          <p>
-            <strong>Details:</strong> {machine.details}
-          </p>
+        <div className="card">
+          <h2><FaUser /> Owner ID</h2>
+          <p>{machine.owner_id}</p>
         </div>
-        <div>
-          <h2>Additional Information</h2>
-          <p>
-            <strong>Created At:</strong>{" "}
-            {new Date(machine.created_at).toLocaleString()}
-          </p>
-          <p>
-            <strong>Updated At:</strong>{" "}
-            {new Date(machine.updated_at).toLocaleString()}
-          </p>
-          <p className="status-text">
-            <strong>Status:</strong>{" "}
+        <div className="card">
+          <h2><FaIdCard /> Machine ID</h2>
+          <p>{machine.machine_id}</p>
+        </div>
+        <div className="card">
+          <h2><FaInfoCircle /> Details</h2>
+          <p>{machine.details}</p>
+        </div>
+        <div className="card">
+          <h2><FaCalendarAlt /> Created At</h2>
+          <p>{new Date(machine.created_at).toLocaleString()}</p>
+        </div>
+        <div className="card">
+          <h2><FaSyncAlt /> Updated At</h2>
+          <p>{new Date(machine.updated_at).toLocaleString()}</p>
+        </div>
+        <div className="card">
+          <h2><FaCircle /> Status</h2>
+          <p className={machine.actions ? "text-success" : "text-danger"}>
             {machine.actions ? (
-              <span className="text-success">
-                <i className="fa fa-circle"></i> Online
-              </span>
+              <>
+                <FaCircle /> Online
+              </>
             ) : (
-              <span className="text-danger">
-                <i className="fa fa-circle"></i> Offline
-              </span>
+              <>
+                <FaCircle /> Offline
+              </>
             )}
           </p>
         </div>

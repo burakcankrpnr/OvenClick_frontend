@@ -83,6 +83,13 @@ function Register() {
         <button type="submit" className="register-button">
           Kayıt Ol
         </button>
+        <button
+          type="button"
+          className="login-button"
+          onClick={() => navigate("/login")}
+        >
+          Giriş Sayfasına Dön
+        </button>
       </form>
     </div>
   );

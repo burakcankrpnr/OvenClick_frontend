@@ -63,6 +63,18 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+.register-button,
+.login-button {
+  width: 100%;
+  margin: 10px;
+  border-radius: 50px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background-color: #413e47;
+}
 .register-button {
   width: 100%;
   margin: 10px;
@@ -72,9 +84,10 @@
   cursor: pointer;
   border: none;
   color: white;
-  background-color: #4320a5;
+  background-color: #5b5a5e;
 }
 
-.register-button:hover {
+.register-button:hover,
+.login-button:hover {
   background-color: #7c7c7c;
 }
