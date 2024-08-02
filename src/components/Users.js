@@ -63,7 +63,7 @@ const Users = ({ token }) => {
   };
 
   const validateUsername = (username) => {
-    const usernameRegex = /^[a-zA-Z0-9_]+$/; // Only allows letters, numbers, and underscores
+    const usernameRegex = /^[a-zA-Z0-9_]+$/;
     return usernameRegex.test(username);
   };
 
@@ -107,7 +107,7 @@ const Users = ({ token }) => {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data);
-      setErrorMessage(""); // Hata mesajını temizle
+      setErrorMessage("");
     } catch (error) {
       console.error(
         "Kullanıcı eklenirken hata:",
@@ -170,7 +170,7 @@ const Users = ({ token }) => {
   const handleEditButtonClick = (user) => {
     setEditUser({
       ...user,
-      password: "", // Şifreyi boş bırakıyoruz ki kullanıcı yeni bir şifre girebilsin
+      password: "",
     });
     setShowEditForm(true);
   };
@@ -210,10 +210,8 @@ const Users = ({ token }) => {
           >
             <option value="">Select Role</option>
             <option value="Admin">Admin</option>
-            <option value="Official">Official</option>
-            <option value="Intern">Intern</option>
-            <option value="Manager">Manager</option>
-            <option value="Worker">Worker</option>
+            <option value="Owner">Owner</option>
+            <option value="User">User</option>
           </select>
           <input
             type="email"
@@ -257,10 +255,8 @@ const Users = ({ token }) => {
           >
             <option value="">Select Role</option>
             <option value="Admin">Admin</option>
-            <option value="Official">Official</option>
-            <option value="Intern">Intern</option>
-            <option value="Manager">Manager</option>
-            <option value="Worker">Worker</option>
+            <option value="Owner">Owner</option>
+            <option value="User">User</option>
           </select>
           <input
             type="email"
