@@ -70,7 +70,7 @@
 }
 
 .login-button {
-  background-color: #0e0f0e;
+  background-color: #0a5e2d !important;
   color: white;
 }
 
@@ -80,10 +80,10 @@
 }
 
 .register-button:hover {
-  background-color: #5379df !important;
+  background-color: #8c8d91 !important;
 }
 .login-button:hover {
-  background-color: #0a5e2d;
+  background-color: #8c8d91 !important;
 }
 .register-button {
   border-radius: 50px !important;
