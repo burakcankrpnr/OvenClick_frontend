@@ -15,10 +15,20 @@
 }
 
 .machine-details .machine-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
   padding: 15px;
   background-color: #000000;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(255, 253, 253, 0.1);
+}
+
+.machine-details .machine-details div {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .machine-details .machine-details h2 {
@@ -59,9 +69,20 @@
   }
 
   .machine-details .machine-details {
+    grid-template-columns: 1fr;
     padding: 10px;
   }
 }
-.machine-details-container .btn btn-secondary {
-  background-color: #e9bdbd;
+
+.btn-secondary {
+  background-color: #000000 !important;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-secondary:hover {
+  background-color: #5a5a5a !important;
 }
