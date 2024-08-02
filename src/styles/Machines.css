@@ -1,6 +1,7 @@
 .container-fluid {
   padding: 20px;
   margin-left: 10px !important;
+  margin-right: 10px !important;
 }
 
 .machine-card {
@@ -114,7 +115,7 @@
   color: #fff;
 }
 
-.machine-add button {
+.machine-add.button {
   background-color: #28a745 !important;
   color: #ffffff !important;
   border: none !important;
@@ -125,12 +126,7 @@
   transition: background-color 0.3s ease, transform 0.3s ease !important;
 }
 
-.machine-add button:hover {
-  background-color: #218838 !important;
+.machine-add.button:hover {
+  background-color: #000000 !important;
   transform: scale(1.05) !important;
-}
-
-.machine-add button:active {
-  background-color: #1e7e34 !important;
-  transform: scale(1) !important;
 }
