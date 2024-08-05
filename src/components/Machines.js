@@ -82,6 +82,7 @@ const Machines = ({ authToken }) => {
       console.error("Makine eklenirken hata:", error);
       alert("Makine eklenirken bir hata oluştu.");
     }
+    alert("Makine başarıyla eklendi.");
   };
 
   const handleUpdateMachine = async () => {
@@ -107,6 +108,7 @@ const Machines = ({ authToken }) => {
         alert("Makine güncellenirken bir hata oluştu.");
       }
     }
+    alert("Makine başarıyla güncellendi.");
   };
 
   const handleDeleteMachine = async (machine_id, e) => {
@@ -122,6 +124,7 @@ const Machines = ({ authToken }) => {
       console.error("Makine silinirken hata:", error);
       alert("Makine silinirken bir hata oluştu.");
     }
+    alert("Makine başarıyla silindi.");
   };
 
   return (

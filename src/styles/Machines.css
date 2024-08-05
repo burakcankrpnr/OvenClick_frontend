@@ -1,9 +1,9 @@
 .container-fluid {
   padding: 30px !important;
+  height: 100vh;
 }
 
 .machine-card {
-  border: 1px solid #888888;
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(170, 22, 22, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;

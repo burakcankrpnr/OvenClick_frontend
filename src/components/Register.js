@@ -18,6 +18,7 @@ function Register() {
       username: username,
       email: email,
       password: password,
+      role: "User",
     };
 
     try {

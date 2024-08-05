@@ -58,9 +58,30 @@ const Users = ({ token }) => {
         error.response ? error.response.data : error.message
       );
     }
+    alert("Kullanıcı silindi");
   };
 
   const handleAddUser = async () => {
+    // Kullanıcı adı doğrulaması
+    const usernamePattern = /^[^_]+$/;
+    if (!usernamePattern.test(newUser.username)) {
+      alert("Kullanıcı adı '_' karakteri içeremez.");
+      return;
+    }
+
+    // Parola doğrulaması
+    if (newUser.password.length <= 8) {
+      alert("Parola en az 8 karakter uzunluğunda olmalıdır.");
+      return;
+    }
+
+    // E-posta doğrulaması
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(newUser.email)) {
+      alert("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
     try {
       await axios.post(`${baseURL}/user`, newUser, {
         headers: { Authorization: `Bearer ${token}` },
@@ -81,6 +102,23 @@ const Users = ({ token }) => {
   };
 
   const handleEditUser = async () => {
+    const usernamePattern = /^[^_]+$/;
+    if (!usernamePattern.test(editUser.username)) {
+      alert("Kullanıcı adı '_' karakteri içeremez.");
+      return;
+    }
+
+    if (editUser.password.length > 0 && editUser.password.length <= 8) {
+      alert("Parola en az 8 karakter uzunluğunda olmalıdır.");
+      return;
+    }
+
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(editUser.email)) {
+      alert("Geçerli bir e-posta adresi girin.");
+      return;
+    }
+
     try {
       await axios.put(`${baseURL}/user/${editUser.user_id}`, editUser, {
         headers: { Authorization: `Bearer ${token}` },
@@ -98,6 +136,7 @@ const Users = ({ token }) => {
         error.response ? error.response.data : error.message
       );
     }
+    alert("Kullanıcı başarıyla güncellendi.");
   };
 
   const handleEditButtonClick = (user) => {
@@ -107,7 +146,6 @@ const Users = ({ token }) => {
     });
     setShowEditForm(true);
   };
-
   return (
     <div className="users-container">
       <h1>Users</h1>
