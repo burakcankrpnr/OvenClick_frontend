@@ -231,6 +231,7 @@ const Machines = ({ authToken }) => {
               setEditMachine({ ...editMachine, details: e.target.value })
             }
           />
+
           <button
             className="btn btn-primary"
             onClick={handleUpdateMachine}
