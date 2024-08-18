@@ -27,9 +27,6 @@ const Sidebar = ({ onLogout }) => {
           <Link to="/users" className="link">
             <FaUser className="icon" /> Users
           </Link>
-        </li>
-        <li className="black-space"></li> {/* Black space */}
-        <li>
           <Link to="/logs" className="link">
             <FaFileAlt className="icon" /> Logs
           </Link>

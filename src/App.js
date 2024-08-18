@@ -14,6 +14,7 @@ import MachineDetails from "./components/MachineDetails";
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
 import SearchBar from "./components/Searchbar";
+import Maps from "./components/Maps";
 import "./App.css";
 
 const Layout = ({ children }) => {
@@ -82,6 +83,16 @@ function App() {
             <ProtectedRoute token={token}>
               <Layout>
                 <Users token={token} />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/maps"
+          element={
+            <ProtectedRoute token={token}>
+              <Layout>
+                <Maps />
               </Layout>
             </ProtectedRoute>
           }
