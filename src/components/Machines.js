@@ -11,6 +11,7 @@ import {
 import "../styles/Machines.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
+import ConfirmationModal from "./ConfirmationModal"; // Import the modal component
 
 const baseURL = "http://localhost:3001";
 
@@ -25,6 +26,9 @@ const Machines = ({ authToken }) => {
   });
   const [editMachine, setEditMachine] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [confirmAction, setConfirmAction] = useState(null); // Track the action to confirm
+  const [confirmMessage, setConfirmMessage] = useState(""); // Track the confirmation message
 
   useEffect(() => {
     const fetchMachines = async () => {
@@ -85,46 +89,69 @@ const Machines = ({ authToken }) => {
     alert("Makine başarıyla eklendi.");
   };
 
-  const handleUpdateMachine = async () => {
+  const handleUpdateMachine = () => {
     if (editMachine) {
-      try {
-        await axios.put(
-          `${baseURL}/machines/${editMachine.machine_id}`,
-          editMachine,
-          {
+      setConfirmAction(() => async () => {
+        try {
+          await axios.put(
+            `${baseURL}/machines/${editMachine.machine_id}`,
+            editMachine,
+            {
+              headers: { Authorization: `Bearer ${authToken}` },
+            }
+          );
+
+          setEditMachine(null);
+          setShowEditForm(false);
+
+          const fetchResponse = await axios.get(`${baseURL}/machines`, {
             headers: { Authorization: `Bearer ${authToken}` },
-          }
-        );
-
-        setEditMachine(null);
-        setShowEditForm(false);
-
-        const fetchResponse = await axios.get(`${baseURL}/machines`, {
-          headers: { Authorization: `Bearer ${authToken}` },
-        });
-        setMachines(fetchResponse.data);
-      } catch (error) {
-        console.error("Makine güncellenirken hata:", error);
-        alert("Makine güncellenirken bir hata oluştu.");
-      }
+          });
+          setMachines(fetchResponse.data);
+          alert("Makine başarıyla güncellendi.");
+        } catch (error) {
+          console.error("Makine güncellenirken hata:", error);
+          alert("Makine güncellenirken bir hata oluştu.");
+        }
+      });
+      setConfirmMessage("Bu makinenin güncellenmesini onaylıyor musunuz?");
+      setShowConfirmModal(true);
     }
-    alert("Makine başarıyla güncellendi.");
   };
 
-  const handleDeleteMachine = async (machine_id, e) => {
-    e.stopPropagation();
-    try {
-      await axios.delete(`${baseURL}/machines/${machine_id}`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
-      setMachines(
-        machines.filter((machine) => machine.machine_id !== machine_id)
-      );
-    } catch (error) {
-      console.error("Makine silinirken hata:", error);
-      alert("Makine silinirken bir hata oluştu.");
+  const handleDeleteMachine = (machine_id) => {
+    setConfirmAction(() => async () => {
+      try {
+        await axios.delete(`${baseURL}/machines/${machine_id}`, {
+          headers: { Authorization: `Bearer ${authToken}` },
+        });
+        setMachines(
+          machines.filter((machine) => machine.machine_id !== machine_id)
+        );
+        setShowConfirmModal(false);
+        alert("Makine başarıyla silindi.");
+      } catch (error) {
+        console.error("Makine silinirken hata:", error);
+        alert("Makine silinirken bir hata oluştu.");
+      }
+    });
+    setConfirmMessage("Bu makineyi silmek istediğinize emin misiniz?");
+    setShowConfirmModal(true);
+  };
+
+  const handleAddMachineClick = () => {
+    setConfirmAction(() => handleAddMachine);
+    setConfirmMessage("Yeni makineyi eklemek istediğinize emin misiniz?");
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirm = () => {
+    if (confirmAction && typeof confirmAction === 'function') {
+      confirmAction();
+      setConfirmAction(null); // Reset the action after confirmation
+    } else {
+      console.error("Confirm action is not a valid function");
     }
-    alert("Makine başarıyla silindi.");
   };
 
   return (
@@ -166,7 +193,7 @@ const Machines = ({ authToken }) => {
               setNewMachine({ ...newMachine, details: e.target.value })
             }
           />
-          <button className="btn btn-primary" onClick={handleAddMachine}>
+          <button className="btn btn-primary" onClick={handleAddMachineClick}>
             Add
           </button>
           <button
@@ -204,7 +231,10 @@ const Machines = ({ authToken }) => {
               setEditMachine({ ...editMachine, details: e.target.value })
             }
           />
-          <button className="btn btn-primary" onClick={handleUpdateMachine}>
+          <button
+            className="btn btn-primary"
+            onClick={handleUpdateMachine}
+          >
             Update
           </button>
           <button
@@ -267,9 +297,10 @@ const Machines = ({ authToken }) => {
                     </button>
                     <button
                       className="action-button delete-button"
-                      onClick={(e) =>
-                        handleDeleteMachine(machine.machine_id, e)
-                      }
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteMachine(machine.machine_id);
+                      }}
                       aria-label={`Delete ${machine.machine_name}`}
                     >
                       <FaTrash />
@@ -281,6 +312,14 @@ const Machines = ({ authToken }) => {
           </div>
         ))}
       </div>
+
+      <ConfirmationModal
+        show={showConfirmModal}
+        onHide={() => setShowConfirmModal(false)}
+        onConfirm={handleConfirm}
+        title="Onay"
+        body={confirmMessage}
+      />
     </div>
   );
 };
