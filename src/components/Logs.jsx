@@ -1,37 +1,29 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import '../../src/styles/Logs.css';
 
-const LogsPage = ({ machine_id }) => {
+const Logs = ({ machineId }) => {  // Pass machineId as a prop or set it appropriately
   const [logs, setLogs] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchLogs = async () => {
-      try {
-        const response = await axios.get(`/logs/${machine_id}`);
+    axios.get(`/api/logs/${machineId}`)
+      .then(response => {
         setLogs(response.data);
-      } catch (err) {
-        setError("Log verileri alınırken hata oluştu.");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchLogs();
-  }, [machine_id]);
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>{error}</div>;
+      })
+      .catch(error => {
+        console.error("Logs alınırken hata oluştu:", error);
+      });
+  }, [machineId]);
 
   return (
-    <div>
-      <h1>Loglar</h1>
-      <table>
+    <div className="logs-container">
+      <h1>Logs</h1>
+      <table className="logs-table">
         <thead>
           <tr>
             <th>Timestamp</th>
             <th>Action</th>
+            <th>Machine ID</th>
             <th>Machine Name</th>
             <th>Details</th>
           </tr>
@@ -41,8 +33,9 @@ const LogsPage = ({ machine_id }) => {
             <tr key={index}>
               <td>{log.timestamp}</td>
               <td>{log.action}</td>
+              <td>{log.machine_id}</td>
               <td>{log.machine_name}</td>
-              <td>{log.details}</td>
+              <td>{JSON.stringify(log.details)}</td>
             </tr>
           ))}
         </tbody>
@@ -51,4 +44,4 @@ const LogsPage = ({ machine_id }) => {
   );
 };
 
-export default LogsPage;
+export default Logs;

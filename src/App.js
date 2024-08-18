@@ -15,6 +15,7 @@ import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
 import SearchBar from "./components/Searchbar";
 import Maps from "./components/Maps";
+import Logs from "./components/Logs"; // Import the Logs component
 import "./App.css";
 
 const Layout = ({ children }) => {
@@ -38,7 +39,7 @@ const Layout = ({ children }) => {
           flexDirection: "column",
         }}
       >
-        <div style={{ display: "flow", alignItems: "center", padding: "10px" }}>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px"}}>
           {showSidebar && <SearchBar />}
         </div>
         <div style={{ flex: 1, padding: "0px", overflowY: "auto" }}>
@@ -93,6 +94,16 @@ function App() {
             <ProtectedRoute token={token}>
               <Layout>
                 <Maps />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/logs"
+          element={
+            <ProtectedRoute token={token}>
+              <Layout>
+                <Logs />
               </Layout>
             </ProtectedRoute>
           }
