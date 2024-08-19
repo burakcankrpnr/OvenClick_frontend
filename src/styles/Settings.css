@@ -1,0 +1,45 @@
+/* Settings.css */
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    padding: 20px;
+  }
+  
+  .profile-card {
+    width: 100%;
+    max-width: 500px;
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+  
+  .profile-header {
+    background: #417d67;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .profile-header h2 {
+    margin: 0;
+  }
+  
+  .profile-body {
+    padding: 20px;
+  }
+  
+  .profile-info p {
+    margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .profile-info strong {
+    color: #417d67;
+  }
+  

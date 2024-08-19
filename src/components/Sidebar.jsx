@@ -36,11 +36,11 @@ const Sidebar = ({ onLogout }) => {
             <FaMap className="icon" /> Maps
           </Link>
         </li>
-        <li className="settings">
-          <Link to="/settings" className="link">
-            <FaCog className="icon" /> Settings
-          </Link>
-        </li>
+        <li className={location.pathname === "/settings" ? "active" : ""}>
+  <Link to="/settings" className="link">
+    <FaCog className="icon" /> Settings
+  </Link>
+</li>
         <li>
           <Link to="/login" className="link" onClick={onLogout}>
             <FaSignOutAlt className="icon" /> Logout

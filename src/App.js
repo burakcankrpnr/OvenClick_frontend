@@ -15,7 +15,8 @@ import Users from "./components/Users";
 import Sidebar from "./components/Sidebar";
 import SearchBar from "./components/Searchbar";
 import Maps from "./components/Maps";
-import Logs from "./components/Logs"; // Import the Logs component
+import Logs from "./components/Logs";
+import Settings from "./components/Settings";
 import "./App.css";
 
 const Layout = ({ children }) => {
@@ -104,6 +105,19 @@ function App() {
             <ProtectedRoute token={token}>
               <Layout>
                 <Logs />
+              </Layout>
+            </ProtectedRoute>
+          }
+        />
+         <Route
+          path="/settings"
+          element={
+            <ProtectedRoute token={token}>
+              <Layout>
+                <Settings user={token}
+                
+                
+                /> 
               </Layout>
             </ProtectedRoute>
           }

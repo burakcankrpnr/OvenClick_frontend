@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../../src/styles/Logs.css';
 
-const Logs = ({ machineId }) => {  // Pass machineId as a prop or set it appropriately
+const Logs = ({ machine_id }) => {  
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-    axios.get(`/api/logs/${machineId}`)
+    axios.get(`/api/logs/${machine_id}`)
       .then(response => {
         setLogs(response.data);
       })
       .catch(error => {
         console.error("Logs alınırken hata oluştu:", error);
       });
-  }, [machineId]);
+  }, [machine_id]);
 
   return (
     <div className="logs-container">

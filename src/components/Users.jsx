@@ -62,20 +62,17 @@ const Users = ({ token }) => {
   };
 
   const handleAddUser = async () => {
-    // Kullanıcı adı doğrulaması
+   
     const usernamePattern = /^[^_]+$/;
     if (!usernamePattern.test(newUser.username)) {
       alert("Kullanıcı adı '_' karakteri içeremez.");
       return;
     }
 
-    // Parola doğrulaması
     if (newUser.password.length <= 8) {
       alert("Parola en az 8 karakter uzunluğunda olmalıdır.");
       return;
     }
-
-    // E-posta doğrulaması
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(newUser.email)) {
       alert("Geçerli bir e-posta adresi girin.");
