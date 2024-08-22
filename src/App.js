@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -29,6 +29,7 @@ const Layout = ({ children }) => {
         <Sidebar
           onLogout={() => {
             localStorage.removeItem("token");
+            localStorage.removeItem("user_id"); // user_id'yi de temizle
           }}
         />
       )}
@@ -40,7 +41,7 @@ const Layout = ({ children }) => {
           flexDirection: "column",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", padding: "10px"}}>
+        <div style={{ display: "flex", alignItems: "center", padding: "10px" }}>
           {showSidebar && <SearchBar />}
         </div>
         <div style={{ flex: 1, padding: "0px", overflowY: "auto" }}>
@@ -53,6 +54,19 @@ const Layout = ({ children }) => {
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [userId, setUserId] = useState(localStorage.getItem("user_id") || "");
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("user_id");
+
+    if (storedToken) {
+      setToken(storedToken);
+    }
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
 
   return (
     <Router>
@@ -109,15 +123,12 @@ function App() {
             </ProtectedRoute>
           }
         />
-         <Route
+        <Route
           path="/settings"
           element={
             <ProtectedRoute token={token}>
               <Layout>
-                <Settings user={token}
-                
-                
-                /> 
+                <Settings user_id={userId} /> {/* userId'yi Settings bileşenine geçin */}
               </Layout>
             </ProtectedRoute>
           }

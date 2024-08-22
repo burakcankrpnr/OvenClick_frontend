@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/Settings.css';
 
-const Settings = () => {
+const Settings = ({ user_id }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token");
-
-      if (token) {
+      
+      if (token && user_id) {
         try {
-          const response = await axios.get('/user', {  
+          const response = await axios.get(`/user/${user_id}`, {
             headers: {
-              Authorization: `Bearer ${token}`
+              Authorization: `Bearer ${token}`,
             }
           });
           setUser(response.data);
@@ -22,19 +22,19 @@ const Settings = () => {
           console.error("Kullanıcı bilgileri getirilemedi:", error);
         }
       } else {
-        console.error("Token bulunamadı.");
+        console.error("Token veya User ID bulunamadı.");
       }
       setLoading(false);
     };
 
     fetchUserData();
-  }, []);
+  }, [user_id]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
-  if (!user) {
+  if (!user_id) {
     return <div>Kullanıcı bilgileri bulunamadı.</div>;
   }
 
