@@ -46,12 +46,12 @@ const Users = ({ token }) => {
     fetchUsers();
   }, [token]);
 
-  const handleDelete = async (userId) => {
+  const handleDelete = async (user_id) => {
     try {
-      await axios.delete(`${baseURL}/user/${userId}`, {
+      await axios.delete(`${baseURL}/user/${user_id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setUsers(users.filter((user) => user.user_id !== userId));
+      setUsers(users.filter((user) => user.user_id !== user_id));
     } catch (error) {
       console.error(
         "Error deleting user:",
@@ -62,7 +62,6 @@ const Users = ({ token }) => {
   };
 
   const handleAddUser = async () => {
-   
     const usernamePattern = /^[^_]+$/;
     if (!usernamePattern.test(newUser.username)) {
       alert("Kullanıcı adı '_' karakteri içeremez.");
@@ -143,6 +142,7 @@ const Users = ({ token }) => {
     });
     setShowEditForm(true);
   };
+
   return (
     <div className="users-container">
       <h1>Users</h1>
