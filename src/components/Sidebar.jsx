@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers, FaMap, FaFileAlt, FaCog } from "react-icons/fa";
+import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers, FaMap, FaFileAlt,  } from "react-icons/fa";
 import "../styles/Sidebar.css";
 
 const Sidebar = ({ onLogout }) => {
@@ -36,11 +36,7 @@ const Sidebar = ({ onLogout }) => {
             <FaMap className="icon" /> Maps
           </Link>
         </li>
-        <li className={location.pathname === "/settings" ? "active" : ""}>
-  <Link to="/settings" className="link">
-    <FaCog className="icon" /> Settings
-  </Link>
-</li>
+        
         <li>
           <Link to="/login" className="link" onClick={onLogout}>
             <FaSignOutAlt className="icon" /> Logout
