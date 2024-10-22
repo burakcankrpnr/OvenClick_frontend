@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers, FaMap, FaFileAlt,  } from "react-icons/fa";
+import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers, FaMap, FaFileAlt, FaSun, FaMoon } from "react-icons/fa";
 import "../styles/Sidebar.css";
 
 const Sidebar = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const location = useLocation();
+
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
   return (
     <div
-      className={`sidebar ${isSidebarOpen ? "open" : "closed"}`}
+      className={`sidebar ${isSidebarOpen ? "open" : "closed"} ${isDarkMode ? "dark" : "light"}`}
       onMouseEnter={() => setIsSidebarOpen(true)}
       onMouseLeave={() => setIsSidebarOpen(false)}
     >
@@ -36,14 +41,21 @@ const Sidebar = ({ onLogout }) => {
             <FaMap className="icon" /> Maps
           </Link>
         </li>
-        
         <li>
           <Link to="/login" className="link" onClick={onLogout}>
             <FaSignOutAlt className="icon" /> Logout
           </Link>
         </li>
-
       </ul>
+
+      <div className="toggle-container">
+        <FaSun className="icon-left" /> {/* Sol ikon */}
+        <label className="switch">
+          <input type="checkbox" checked={isDarkMode} onChange={toggleDarkMode} />
+          <span className="slider round"></span>
+        </label>
+        <FaMoon className="icon-right" /> {/* Sağ ikon */}
+      </div>
     </div>
   );
 };

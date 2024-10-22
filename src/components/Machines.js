@@ -11,13 +11,14 @@ import {
 import "../styles/Machines.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
-import ConfirmationModal from "./ConfirmationModal"; // Import the modal component
+import ConfirmationModal from "./ConfirmationModal";
 
 const baseURL = "http://localhost:3001";
 
 const Machines = ({ authToken }) => {
   const navigate = useNavigate();
   const [machines, setMachines] = useState([]);
+  const [filteredMachines, setFilteredMachines] = useState([]);
   const [showAddForm, setShowAddForm] = useState(false);
   const [newMachine, setNewMachine] = useState({
     machine_name: "",
@@ -27,8 +28,11 @@ const Machines = ({ authToken }) => {
   const [editMachine, setEditMachine] = useState(null);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const [confirmAction, setConfirmAction] = useState(null); // Track the action to confirm
-  const [confirmMessage, setConfirmMessage] = useState(""); // Track the confirmation message
+  const [confirmAction, setConfirmAction] = useState(null);
+  const [confirmMessage, setConfirmMessage] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12; // Sayfada gösterilecek makine sayısı
 
   useEffect(() => {
     const fetchMachines = async () => {
@@ -37,6 +41,7 @@ const Machines = ({ authToken }) => {
           headers: { Authorization: `Bearer ${authToken}` },
         });
         setMachines(response.data);
+        setFilteredMachines(response.data);
       } catch (error) {
         console.error("Makineler alınırken hata:", error);
       }
@@ -45,25 +50,24 @@ const Machines = ({ authToken }) => {
     fetchMachines();
   }, [authToken]);
 
+  useEffect(() => {
+    const results = machines.filter(machine =>
+      machine.machine_name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setFilteredMachines(results);
+  }, [searchTerm, machines]);
+
   const handleAddMachine = async () => {
-    if (
-      !newMachine.machine_name.trim() ||
-      !newMachine.owner_id.trim() ||
-      !newMachine.details.trim()
-    ) {
+    if (!newMachine.machine_name.trim() || !newMachine.owner_id.trim() || !newMachine.details.trim()) {
       alert("Makine adı, sahip ID'si ve detaylar boş bırakılamaz!");
       return;
     }
 
     try {
-      const response = await axios.get(`${baseURL}/machines`, {
-        headers: { Authorization: `Bearer ${authToken}` },
-      });
-      const existingMachines = response.data;
-
-      const isDuplicate = existingMachines.some(
+      const isDuplicate = machines.some(
         (machine) => machine.machine_name === newMachine.machine_name
       );
+      
 
       if (isDuplicate) {
         alert("Bu makine adı zaten mevcut. Lütfen farklı bir ad girin.");
@@ -76,12 +80,10 @@ const Machines = ({ authToken }) => {
 
       setNewMachine({ machine_name: "", owner_id: "", details: "" });
       setShowAddForm(false);
-
-      const fetchResponse = await axios.get(`${baseURL}/machines`, {
+      const response = await axios.get(`${baseURL}/machines`, {
         headers: { Authorization: `Bearer ${authToken}` },
       });
-
-      setMachines(fetchResponse.data);
+      setMachines(response.data);
     } catch (error) {
       console.error("Makine eklenirken hata:", error);
       alert("Makine eklenirken bir hata oluştu.");
@@ -93,21 +95,15 @@ const Machines = ({ authToken }) => {
     if (editMachine) {
       setConfirmAction(() => async () => {
         try {
-          await axios.put(
-            `${baseURL}/machines/${editMachine.machine_id}`,
-            editMachine,
-            {
-              headers: { Authorization: `Bearer ${authToken}` },
-            }
-          );
-
-          setEditMachine(null);
-          setShowEditForm(false);
-
-          const fetchResponse = await axios.get(`${baseURL}/machines`, {
+          await axios.put(`${baseURL}/machines/${editMachine.machine_id}`, editMachine, {
             headers: { Authorization: `Bearer ${authToken}` },
           });
-          setMachines(fetchResponse.data);
+          setEditMachine(null);
+          setShowEditForm(false);
+          const response = await axios.get(`${baseURL}/machines`, {
+            headers: { Authorization: `Bearer ${authToken}` },
+          });
+          setMachines(response.data);
           alert("Makine başarıyla güncellendi.");
         } catch (error) {
           console.error("Makine güncellenirken hata:", error);
@@ -125,9 +121,7 @@ const Machines = ({ authToken }) => {
         await axios.delete(`${baseURL}/machines/${machine_id}`, {
           headers: { Authorization: `Bearer ${authToken}` },
         });
-        setMachines(
-          machines.filter((machine) => machine.machine_id !== machine_id)
-        );
+        setMachines(machines.filter((machine) => machine.machine_id !== machine_id));
         setShowConfirmModal(false);
         alert("Makine başarıyla silindi.");
       } catch (error) {
@@ -154,10 +148,28 @@ const Machines = ({ authToken }) => {
     }
   };
 
+  const handleSearch = (e) => {
+    setSearchTerm(e.target.value);
+    setCurrentPage(1); // Sayfayı arama sonucuna göre sıfırla
+  };
+
+  // Sayfalama fonksiyonu
+  const indexOfLastMachine = currentPage * itemsPerPage;
+  const indexOfFirstMachine = indexOfLastMachine - itemsPerPage;
+  const currentMachines = filteredMachines.slice(indexOfFirstMachine, indexOfLastMachine);
+  const totalPages = Math.ceil(filteredMachines.length / itemsPerPage);
+
   return (
     <div className="container-fluid">
       <h1>Machines</h1>
       <div className="d-flex justify-content-between mb-4">
+        <input
+          type="text"
+          placeholder="Search Machines.."
+          value={searchTerm}
+          onChange={handleSearch}
+          className="form-control"
+        />
         <button
           className="machine-add button"
           onClick={() => setShowAddForm(!showAddForm)}
@@ -204,6 +216,7 @@ const Machines = ({ authToken }) => {
           </button>
         </div>
       )}
+
       {showEditForm && editMachine && (
         <div className="edit-machine-form">
           <h2>Update Machine</h2>
@@ -248,7 +261,7 @@ const Machines = ({ authToken }) => {
       )}
 
       <div className="row">
-        {machines.map((machine) => (
+        {currentMachines.map((machine) => (
           <div
             className="col-lg-3 col-md-4 col-sm-6 mb-4"
             key={machine.machine_id}
@@ -311,6 +324,18 @@ const Machines = ({ authToken }) => {
               </div>
             </div>
           </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentPage(index + 1)}
+            className={currentPage === index + 1 ? 'activ' : ''}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
 

@@ -12,14 +12,14 @@ import ProtectedRoute from "./components/ProtectedRoutes";
 import Machines from "./components/Machines";
 import MachineDetails from "./components/MachineDetails";
 import Users from "./components/Users";
-import Sidebar from "./components/Sidebar";
-import SearchBar from "./components/Searchbar";
+import Sidebar from "./components/Sidebar"; 
+import SearchBar from "./components/Searchbar"; 
 import Maps from "./components/Maps";
 import Logs from "./components/Logs";
 import Settings from "./components/Settings";
 import "./App.css";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, searchResults, onSearch }) => {
   const location = useLocation();
   const showSidebar = !["/login", "/register"].includes(location.pathname);
 
@@ -29,7 +29,7 @@ const Layout = ({ children }) => {
         <Sidebar
           onLogout={() => {
             localStorage.removeItem("token");
-            localStorage.removeItem("user_id"); // user_id'yi de temizle
+            localStorage.removeItem("user_id"); 
           }}
         />
       )}
@@ -42,7 +42,7 @@ const Layout = ({ children }) => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", padding: "10px" }}>
-          {showSidebar && <SearchBar />}
+          {showSidebar && <SearchBar onSearch={onSearch} />} {/* SearchBar'a onSearch propunu geçiyoruz */}
         </div>
         <div style={{ flex: 1, padding: "0px", overflowY: "auto" }}>
           {children}
@@ -55,6 +55,7 @@ const Layout = ({ children }) => {
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [userId, setUserId] = useState(localStorage.getItem("user_id") || "");
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -68,6 +69,26 @@ function App() {
     }
   }, []);
 
+  const handleSearch = (query) => {
+    // Arama yapılacak veriler
+    const data = [
+      { id: 1, title: 'Machine 1' },
+      { id: 2, title: 'User 1' },
+      { id: 3, title: 'Log Entry 1' },
+      { id: 4, title: 'Machine 2' },
+      { id: 5, title: 'User 2' },
+      { id: 6, title: 'Log Entry 2' },
+      // Diğer veriler...
+    ];
+
+    // Arama sonuçlarını filtreleme
+    const results = data.filter(item => 
+      item.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setSearchResults(results);
+  };
+
   return (
     <Router>
       <Routes>
@@ -77,8 +98,8 @@ function App() {
           path="/machines"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
-                <Machines authToken={token} />
+              <Layout onSearch={handleSearch}>
+                <Machines authToken={token} searchResults={searchResults} />
               </Layout>
             </ProtectedRoute>
           }
@@ -87,7 +108,7 @@ function App() {
           path="/machines/:machine_id"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
+              <Layout onSearch={handleSearch}>
                 <MachineDetails authToken={token} />
               </Layout>
             </ProtectedRoute>
@@ -97,7 +118,7 @@ function App() {
           path="/users"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
+              <Layout onSearch={handleSearch}>
                 <Users token={token} />
               </Layout>
             </ProtectedRoute>
@@ -107,7 +128,7 @@ function App() {
           path="/maps"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
+              <Layout onSearch={handleSearch}>
                 <Maps />
               </Layout>
             </ProtectedRoute>
@@ -117,7 +138,7 @@ function App() {
           path="/logs"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
+              <Layout onSearch={handleSearch}>
                 <Logs />
               </Layout>
             </ProtectedRoute>
@@ -127,7 +148,7 @@ function App() {
           path="/settings"
           element={
             <ProtectedRoute token={token}>
-              <Layout>
+              <Layout onSearch={handleSearch}>
                 <Settings user_id={userId} /> {/* userId'yi Settings bileşenine geçin */}
               </Layout>
             </ProtectedRoute>

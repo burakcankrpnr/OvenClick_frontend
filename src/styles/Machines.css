@@ -1,8 +1,17 @@
+/* Machines.css */
+
+body {
+  margin: 0;
+  transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
+  color: #000000;
+}
+
 .container-fluid {
   padding: 20px !important;
   height: 100vh;
 }
 
+/* Aydınlık mod stilleri */
 .machine-card {
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(170, 22, 22, 0.1);
@@ -13,6 +22,7 @@
   margin-top: 0px;
   color: rgb(0, 0, 0);
   cursor: pointer;
+  background-color: #ffffff; /* Aydınlık mod kart arka planı */
 }
 
 .machine-card:hover {
@@ -128,3 +138,50 @@
   background-color: #000000 !important;
   transform: scale(1.05) !important;
 }
+
+/* Karanlık mod stilleri */
+body.dark-mode {
+  background-color: #343a40; /* Karanlık mod arka planı */
+  color: #ffffff; /* Karanlık mod yazı rengi */
+}
+
+body.dark-mode .machine-card {
+  background-color: #495057; /* Karanlık mod kart arka planı */
+  color: #ffffff; /* Karanlık mod kart yazı rengi */
+}
+
+body.dark-mode .status-online {
+  color: #28a745; /* Yeşil renk */
+}
+
+body.dark-mode .status-offline {
+  color: #dc3545; /* Kırmızı renk */
+}
+
+body.dark-mode .add-machine-form input,
+body.dark-mode .edit-machine-form input {
+  background-color: #6c757d; /* Karanlık mod input arka planı */
+  color: #ffffff; /* Karanlık mod input yazı rengi */
+}
+
+body.dark-mode .machine-actions .btn-info {
+  background-color: #495057; /* Karanlık mod buton arka planı */
+  border-color: #495057; /* Karanlık mod buton kenar rengi */
+}
+
+body.dark-mode .machine-add.button {
+  background-color: #28a745 !important;
+}
+
+body.dark-mode .machine-add.button:hover {
+  background-color: #ffffff !important;
+}
+
+d-flex justify-content-between mb-4 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: #000000;
+  background-color: #ffffff;
+}
+
