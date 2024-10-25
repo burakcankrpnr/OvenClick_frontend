@@ -24,12 +24,12 @@ const Layout = ({ children, searchResults, onSearch }) => {
   const showSidebar = !["/login", "/register"].includes(location.pathname);
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
+    <div style={{ display: "flex", height: "100vh , background-color: #000000" }}>
       {showSidebar && (
         <Sidebar
           onLogout={() => {
             localStorage.removeItem("token");
-            localStorage.removeItem("user_id"); 
+            localStorage.removeItem("UserId"); 
           }}
         />
       )}
@@ -54,12 +54,12 @@ const Layout = ({ children, searchResults, onSearch }) => {
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token") || "");
-  const [userId, setUserId] = useState(localStorage.getItem("user_id") || "");
+  const [UserId, setUserId] = useState(localStorage.getItem("user_id") || "");
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("token");
-    const storedUserId = localStorage.getItem("user_id");
+   useEffect(() => {
+ const storedToken = localStorage.getItem("token");
+ const storedUserId = localStorage.getItem("UserId");
 
     if (storedToken) {
       setToken(storedToken);
@@ -149,7 +149,7 @@ function App() {
           element={
             <ProtectedRoute token={token}>
               <Layout onSearch={handleSearch}>
-                <Settings user_id={userId} /> {/* userId'yi Settings bileşenine geçin */}
+                <Settings user_id={UserId} /> {/* userId'yi Settings bileşenine geçin */}
               </Layout>
             </ProtectedRoute>
           }

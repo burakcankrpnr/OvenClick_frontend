@@ -3,7 +3,7 @@
 body {
   margin: 0;
   transition: background-color 0.3s, color 0.3s; /* Geçiş efekti */
-  color: #000000;
+  color: #ffffff ;
 }
 
 .container-fluid {
@@ -11,7 +11,6 @@ body {
   height: 100vh;
 }
 
-/* Aydınlık mod stilleri */
 .machine-card {
   border-radius: 20px;
   box-shadow: 0 4px 6px rgba(170, 22, 22, 0.1);
@@ -22,7 +21,7 @@ body {
   margin-top: 0px;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  background-color: #ffffff; /* Aydınlık mod kart arka planı */
+  background-color: #ffffff; 
 }
 
 .machine-card:hover {

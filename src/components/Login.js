@@ -8,6 +8,7 @@ import { AiOutlineUser } from "react-icons/ai";
 function Login({ setToken }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [user, setUser] = useState([]);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,10 +24,11 @@ function Login({ setToken }) {
         "http://localhost:3001/auth/login",
         credentials
       );
-
       if (response.data.token) {
         setToken(response.data.token);
+        setUser(response.data.user);
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         navigate("/machines");
       } else {
         console.error("Token alınamadı");

@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import SearchBar from "../src/components/Searchbar";
-import "../styles/Layout.css";
 
 const Layout = ({ onLogout }) => {
   return (
