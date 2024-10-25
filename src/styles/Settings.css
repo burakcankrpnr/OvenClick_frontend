@@ -1,45 +1,131 @@
-/* Settings.css */
+/* Container styling */
 .settings-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    padding: 20px;
-  }
-  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e9ecef;
+  padding: 20px;
+}
+
+/* Profile Card */
+.profile-card {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  border: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Header Section */
+.profile-header {
+  background: linear-gradient(135deg, #417d67, #285943);
+  color: #ffffff;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.profile-header h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+/* Body Section */
+.profile-body {
+  padding: 25px;
+  color: #444;
+}
+
+.profile-info {
+  margin-bottom: 15px;
+}
+
+.profile-info p {
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #555;
+  display: flex;
+  align-items: center;
+}
+
+.profile-info strong {
+  color: #000000;
+  margin-right: 8px;
+  font-weight: 500;
+}
+
+/* Profile picture (optional) */
+.profile-picture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  margin: -60px auto 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  color: #ffffff;
+}
+
+/* Button styling */
+.profile-actions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.profile-actions button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.profile-actions .btn-edit {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.profile-actions .btn-edit:hover {
+  background-color: #000000;
+}
+
+.profile-actions .btn-delete {
+  background-color: #dc3545;
+  color: #ffffff;
+}
+
+.profile-actions .btn-delete:hover {
+  background-color: #c82333;
+}s
+
+/* Responsive Design */
+@media (max-width: 576px) {
   .profile-card {
-    width: 100%;
-    max-width: 500px;
-    background: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    border: 1px solid #ddd;
+    padding: 15px;
   }
-  
-  .profile-header {
-    background: #417d67;
-    color: #ffffff;
-    padding: 20px;
-    text-align: center;
-  }
-  
+
   .profile-header h2 {
-    margin: 0;
+    font-size: 1.5rem;
   }
-  
-  .profile-body {
-    padding: 20px;
+
+  .profile-actions button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  
-  .profile-info p {
-    margin: 10px 0;
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  .profile-info strong {
-    color: #417d67;
-  }
-  
+}

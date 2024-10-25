@@ -150,7 +150,7 @@ const Machines = ({ authToken }) => {
 
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
-    setCurrentPage(1); // Sayfayı arama sonucuna göre sıfırla
+    setCurrentPage(1); 
   };
 
   // Sayfalama fonksiyonu
@@ -161,7 +161,6 @@ const Machines = ({ authToken }) => {
 
   return (
     <div className="container-fluid">
-      <h1>Machines</h1>
       <div className="d-flex justify-content-between mb-4">
         <input
           type="text"

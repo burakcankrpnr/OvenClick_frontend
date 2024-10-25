@@ -17,7 +17,6 @@ const Logs = ({ machine_id }) => {
 
   return (
     <div className="logs-container">
-      <h1>Logs</h1>
       <table className="logs-table">
         <thead>
           <tr>

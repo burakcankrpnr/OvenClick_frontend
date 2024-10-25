@@ -6,31 +6,6 @@ const Settings = ({ user_id }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     const token = localStorage.getItem("token");
-  //     console.log("Token:", token);
-  //     console.log("User ID:", user_id);
-      
-  //     if (token && user_id) {
-  //       try {
-  //         const response = await axios.get(`/user/${user_id}`, {
-  //           headers: {
-  //             Authorization: `Bearer ${token}`,
-  //           }
-  //         });
-  //         setUser(response.data);
-  //       } catch (error) {
-  //         console.error("Kullanıcı bilgileri getirilemedi:", error);
-  //       }
-  //     } else {
-  //       console.error("Token veya User ID bulunamadı.");
-  //     }
-  //     setLoading(false);
-  //   };
-
-  //   fetchUserData();
-  // }, [user_id]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
