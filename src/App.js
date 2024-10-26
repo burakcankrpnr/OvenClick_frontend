@@ -13,7 +13,7 @@ import Machines from "./components/Machines";
 import MachineDetails from "./components/MachineDetails";
 import Users from "./components/Users";
 import Sidebar from "./components/Sidebar"; 
-import SearchBar from "./components/Searchbar"; 
+// import SearchBar from "./components/Searchbar"; 
 import Maps from "./components/Maps";
 import Logs from "./components/Logs";
 import Settings from "./components/Settings";
@@ -42,7 +42,7 @@ const Layout = ({ children, searchResults, onSearch }) => {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", padding: "10px" }}>
-          {showSidebar && <SearchBar onSearch={onSearch} />} {/* SearchBar'a onSearch propunu geçiyoruz */}
+          {/* {showSidebar && <SearchBar onSearch={onSearch} />} SearchBar'a onSearch propunu geçiyoruz */}
         </div>
         <div style={{ flex: 1, padding: "0px", overflowY: "auto" }}>
           {children}
