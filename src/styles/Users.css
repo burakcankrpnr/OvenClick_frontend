@@ -1,6 +1,20 @@
 .users-container {
-  padding: 20px !important;
-}
+  padding: 20px;
+    height: 100%;
+  }
+  
+  @media (max-width: 768px) {
+    .users-container {
+      padding: 10px; 
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .users-container {
+      height: auto; 
+    }
+  }
+
 
 .add-user-button {
   background-color: #28a745;
@@ -13,11 +27,12 @@
   align-items: center;
   border-radius: 5px;
   margin-bottom: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-user-button:hover {
-  background-color: #000000;
-  transform: scale(1.05) !important;
+  background-color: #218838;
+  transform: scale(1.05);
 }
 
 .add-user-button svg {
@@ -32,6 +47,7 @@
   background-color: #f9f9f9;
   display: flex;
   flex-direction: column;
+  border-radius: 8px;
 }
 
 .add-user-form-container input,
@@ -42,7 +58,8 @@
   width: 100%;
   padding: 8px;
   margin-bottom: 10px;
-  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .add-user-form-container input[type="password"] + .password-icon,
@@ -61,26 +78,25 @@
   border: none;
   cursor: pointer;
   font-size: 16px;
+  border-radius: 5px;
 }
 
-.add-button {
+.add-button,
+.update-button {
   background-color: #28a745;
   color: #fff;
-}
-
-.update-button {
-  background-color: #218838;
-  color: #fff;
-}
-
-.cancel-button {
-  background-color: #dc3545;
-  color: #fff;
+  transition: background-color 0.3s ease;
 }
 
 .add-button:hover,
 .update-button:hover {
   background-color: #218838;
+}
+
+.cancel-button {
+  background-color: #dc3545;
+  color: #fff;
+  transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
@@ -101,6 +117,12 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .user-card h3 {
@@ -116,8 +138,8 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  max-width: 250px; /* Adjust as needed */
-  word-wrap: break-word; /* Allow long text to wrap */
+  max-width: 250px;
+  word-wrap: break-word;
 }
 
 .info-item:nth-child(1) .info-icon {
@@ -152,7 +174,7 @@
 .info-item p {
   font-size: 14px;
   margin: 0;
-  overflow-wrap: break-word; /* Break long words if necessary */
+  overflow-wrap: break-word;
 }
 
 .card-actions {
@@ -168,18 +190,19 @@
   border: none;
   cursor: pointer;
   font-size: 20px;
+  transition: color 0.3s ease;
 }
 
 .edit-button {
   color: #007bff;
 }
 
-.delete-button {
-  color: #dc3545;
-}
-
 .edit-button:hover {
   color: #0056b3;
+}
+
+.delete-button {
+  color: #dc3545;
 }
 
 .delete-button:hover {

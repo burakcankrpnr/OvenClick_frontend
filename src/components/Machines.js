@@ -32,7 +32,7 @@ const Machines = ({ authToken }) => {
   const [confirmMessage, setConfirmMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12; // Sayfada gösterilecek makine sayısı
+  const itemsPerPage = 12; 
 
   useEffect(() => {
     const fetchMachines = async () => {
@@ -142,7 +142,7 @@ const Machines = ({ authToken }) => {
   const handleConfirm = () => {
     if (confirmAction && typeof confirmAction === 'function') {
       confirmAction();
-      setConfirmAction(null); // Reset the action after confirmation
+      setConfirmAction(null); 
     } else {
       console.error("Confirm action is not a valid function");
     }

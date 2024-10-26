@@ -1,12 +1,24 @@
 body {
   margin: 0;
   transition: background-color 0.3s, color 0.3s; 
-  color: #ffffff ;
+  response: 100%;
 }
 
 .container-fluid {
-  padding: 20px !important;
-  height: 100vh;
+  padding: 20px;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 10px; /* Mobil için daha dar padding */
+  }
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    height: auto; /* Mobilde otomatik yüksekliği ayarla */
+  }
 }
 
 .machine-card {
