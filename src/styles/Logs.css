@@ -1,20 +1,38 @@
-/* src/components/Logs.css */
 .logs-container {
-    padding: 20px;
-  }
-  
-  .logs-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .logs-table th, .logs-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
-  
-  .logs-table th {
-    background-color: #f2f2f2;
-    text-align: left;
-  }
-  
+  padding: 20px;
+}
+
+.logs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.logs-table th,
+.logs-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.logs-table th {
+  background-color: #f2f2f2;
+  text-align: left;
+}
+
+body.dark-mode .logs-container {
+  color: #e0e0e0;
+}
+
+body.dark-mode .logs-table {
+  border-color: #333;
+}
+
+body.dark-mode .logs-table th {
+  background-color: #333;
+  color: #e0e0e0;
+}
+
+body.dark-mode .logs-table td {
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  border-color: #444;
+}

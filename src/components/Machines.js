@@ -196,14 +196,6 @@ const Machines = ({ authToken }) => {
               setNewMachine({ ...newMachine, owner_id: e.target.value })
             }
           />
-          <input
-            type="text"
-            placeholder="Details"
-            value={newMachine.details}
-            onChange={(e) =>
-              setNewMachine({ ...newMachine, details: e.target.value })
-            }
-          />
           <button className="btn btn-primary" onClick={handleAddMachineClick}>
             Add
           </button>

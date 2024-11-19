@@ -154,3 +154,42 @@ input:checked + .slider:before {
   align-items: center;
   margin-top: 20px;
 }
+
+/* Sidebar.css */
+
+/* Profile item styles */
+.profile-item {
+  position: relative; /* Ensure the popup is positioned correctly */
+}
+
+.profile-popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  display: block;
+}
+
+.profile-popup p {
+  margin: 0;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.profile-popup p:hover {
+  background-color: #f0f0f0;
+}
+
+.profile-item:hover .profile-popup {
+  display: block;
+}
+
+/* Additional adjustments to the popup */
+.profile-item:hover .profile-popup {
+  display: block;
+}

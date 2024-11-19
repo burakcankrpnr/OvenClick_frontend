@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaList, FaSignOutAlt, FaUser, FaCogs, FaUsers, FaMap, FaFileAlt, FaSun, FaMoon } from "react-icons/fa";
 import "../styles/Sidebar.css";
@@ -6,11 +6,21 @@ import "../styles/Sidebar.css";
 const Sidebar = ({ onLogout }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isProfileHovered, setIsProfileHovered] = useState(false);  // New state for hover effect
   const location = useLocation();
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
   };
+
+  // Dark mode için body sınıfını güncelle
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, [isDarkMode]);
 
   return (
     <div
@@ -41,11 +51,27 @@ const Sidebar = ({ onLogout }) => {
             <FaMap className="icon" /> Maps
           </Link>
         </li>
-        <li>
+
+        {/* Profile Section */}
+        <li
+          className="profile-item"
+          onMouseEnter={() => setIsProfileHovered(true)}
+          onMouseLeave={() => setIsProfileHovered(false)}
+        >
           <Link to="/settings" className="link">
             <FaUser className="icon" /> Profile
           </Link>
+          
+          {/* Profile Popup */}
+          {isProfileHovered && (
+            <div className="profile-popup">
+              <p>View Profile</p>
+              <p>Settings</p>
+              <p>Account</p>
+            </div>
+          )}
         </li>
+
         <li>
           <Link to="/login" className="link" onClick={onLogout}>
             <FaSignOutAlt className="icon" /> Logout
@@ -54,12 +80,12 @@ const Sidebar = ({ onLogout }) => {
       </ul>
 
       <div className="toggle-container">
-        <FaSun className="icon-left" /> 
+        <FaSun className="icon-left" />
         <label className="switch">
           <input type="checkbox" checked={isDarkMode} onChange={toggleDarkMode} />
           <span className="slider round"></span>
         </label>
-        <FaMoon className="icon-right" /> 
+        <FaMoon className="icon-right" />
       </div>
     </div>
   );

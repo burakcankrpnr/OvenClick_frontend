@@ -8,7 +8,7 @@ const SearchBar = ({ onSearch }) => {
   const handleSearch = () => {
     if (query.trim()) {
       onSearch(query);
-      setQuery(''); // Arama yapıldıktan sonra girişi temizle
+      setQuery(''); 
     }
   };
 

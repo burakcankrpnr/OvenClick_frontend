@@ -1,31 +1,68 @@
+/* Temel Search Bar Stili */
 .search-bar {
   display: flex;
   align-items: center;
-  background-color: #cccccc;
-  padding: 8px;
-  box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
-  margin: 0 10px;
+  background-color: #f0f0f0; /* Açık tema için arka plan */
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  margin: 0 15px;
+  transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.search-bar:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 .search-bar input {
   flex: 1;
-  border: none;
+  border: 1px solid #ccc;
   outline: none;
   padding: 10px;
   font-size: 16px;
-  border-radius: 10px;
-  background-color: #cccccc;
-  color: #000000;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+  border-color: #007bff; /* Odaklanıldığında mavi kenarlık */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
 .search-icon {
-  margin: 0 10px;
-  color: #000000;
+  margin: 0 12px;
+  color: #666;
+  font-size: 1.2rem;
+  transition: color 0.3s;
 }
 
-.search-bar {
-  width: 100%; 
-  padding: 10px; 
-  font-size: 1rem; 
+.search-icon:hover {
+  color: #007bff; /* Hover olduğunda simge rengi */
+}
+
+/* Koyu Mod Desteği */
+body.dark-mode .search-bar {
+  background-color: #2c2c2e; /* Koyu tema arka plan */
+  box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .search-bar input {
+  background-color: #444;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark-mode .search-bar input:focus {
+  border-color: #66d9ef; /* Koyu modda odak rengi */
+  box-shadow: 0 0 4px rgba(102, 217, 239, 0.5);
+}
+
+body.dark-mode .search-icon {
+  color: #aaa;
+}
+
+body.dark-mode .search-icon:hover {
+  color: #66d9ef;
 }
