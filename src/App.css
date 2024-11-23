@@ -1,21 +1,20 @@
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  width: 100%;
-  background-color: #F5F5F5;
-  color: #000;
-
+  height: 100%; /* Sayfanın tamamını kapsar */
+  width: 100%; /* Sayfanın tamamını kapsar */
+  background-color: #F5F5F5; /* Normal tema arka plan rengi */
+  color: #000; /* Normal yazı rengi */
 }
 
 #root {
-  height: 100%;
   display: flex;
   flex-direction: column;
+  height: 100%; /* Tüm ekranı kapsar */
+  min-height: 100vh; /* Ekran boyutuna göre içerik boyutunu ayarlamak için */
 }
 
 body.dark-mode {
-  background-color: #343a40; 
-  color: #ffffff; 
+  background-color: #343a40; /* Karanlık tema arka plan */
+  color: #ffffff; /* Yazı rengi */
 }
-

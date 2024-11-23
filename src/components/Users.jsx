@@ -281,7 +281,6 @@ const Users = ({ token }) => {
           </button>
         </div>
       )}
-      
       <div className="users-grid">
         {users.map((user) => (
           <div className="user-card" key={user.user_id}>

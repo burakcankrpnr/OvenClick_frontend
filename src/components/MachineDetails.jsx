@@ -10,7 +10,8 @@ import {
   FaCircle, 
   FaArrowLeft, 
   FaSave,
-  FaMapMarkerAlt
+  FaMapMarkerAlt,
+  FaPowerOff
 } from 'react-icons/fa';
 import "../styles/MachineDetails.css";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -23,7 +24,10 @@ const MachineDetails = ({ authToken }) => {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [showModal, setShowModal] = useState(false); // For the status change modal
+  const [newStatus, setNewStatus] = useState(null); // To hold the new status value
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const fetchMachineDetails = async () => {
@@ -46,7 +50,7 @@ const MachineDetails = ({ authToken }) => {
     try {
       await axios.put(
         `${baseURL}/machines/${machine_id}`,
-        { latitude, longitude },  // JSON formatında veri gönderin
+        { latitude, longitude },
         {
           headers: { Authorization: `Bearer ${authToken}` },
         }
@@ -59,10 +63,29 @@ const MachineDetails = ({ authToken }) => {
     }
   };
 
+  const handleChangeStatus = async () => {
+    try {
+      await axios.put(
+        `${baseURL}/machines/${machine_id}`,
+        { status: newStatus },  
+        {
+          headers: { Authorization: `Bearer ${authToken}` },
+        }
+      );
+      setMachine(prev => ({ ...prev, actions: newStatus }));
+      setShowModal(false);
+      alert("Machine status updated successfully.");
+    } catch (error) {
+      console.error("Error updating status:", error.response ? error.response.data : error.message);
+      alert("Error updating status.");
+    }
+  };
+
   if (!machine) {
     return <div>Loading...</div>;
   }
 
+  
   return (
     <div className="machine-details-container">
       <button className="btn btn-secondary mb-3" onClick={() => navigate(-1)}>
@@ -95,6 +118,9 @@ const MachineDetails = ({ authToken }) => {
               </>
             )}
           </p>
+          <button className="btn btn-warning" onClick={() => setShowModal(true)}>
+            <FaPowerOff /> Change Status
+          </button>
         </div>
         <div className="card">
           <h2><FaCalendarAlt /> Created At</h2>
@@ -137,6 +163,33 @@ const MachineDetails = ({ authToken }) => {
               </button>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Modal for changing status */}
+      <div className={`modal ${showModal ? 'show' : ''}`} style={{ display: showModal ? 'block' : 'none' }} tabIndex="-1" aria-hidden="true">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">Change Machine Status</h5>
+              <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+            </div>
+            <div className="modal-body">
+              <p>Do you want to change the machine status?</p>
+              <div className="btn-group">
+                <button className="btn btn-success" onClick={() => setNewStatus(true)}>Online</button>
+                <button className="btn btn-danger" onClick={() => setNewStatus(false)}>Offline</button>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>
+                Close
+              </button>
+              <button type="button" className="btn btn-primary" onClick={handleChangeStatus}>
+                Save changes
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
