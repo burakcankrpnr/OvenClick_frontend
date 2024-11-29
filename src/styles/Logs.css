@@ -1,5 +1,8 @@
 .logs-container {
   padding: 20px;
+  
+  margin-top: -20px;  
+  margin-left: -8px; 
 }
 
 .logs-table {
@@ -36,3 +39,4 @@ body.dark-mode .logs-table td {
   color: #e0e0e0;
   border-color: #444;
 }
+

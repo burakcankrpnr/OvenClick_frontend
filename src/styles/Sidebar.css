@@ -1,3 +1,4 @@
+/* Genel Sidebar Ayarları */
 .sidebar {
   height: 100%;
   width: 200px;
@@ -12,6 +13,7 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
+/* Işık ve Karanlık Modlar */
 .sidebar.light {
   background: #F2F2F7; 
   box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
@@ -40,6 +42,7 @@
   color: #FFFFFF;
 }
 
+/* Menü ve Bağlantılar */
 .menu {
   list-style: none;
   padding: 0;
@@ -57,7 +60,8 @@
   padding: 10px;
   border-radius: 10px;
   transition: background 0.3s, color 0.3s;
-  font-size: 16px; 
+  font-size: 16px;
+  color: inherit;
 }
 
 .icon {
@@ -65,12 +69,12 @@
   margin-right: 15px;
 }
 
+/* Üst Menü İkon */
 .top-icon {
   display: flex;
-  flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   height: 60px;
 }
 
@@ -130,9 +134,10 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
-
 .toggle-container {
-  margin-top: auto; 
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,18 +153,8 @@ input:checked + .slider:before {
   margin-left: 10px;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-/* Sidebar.css */
-
-/* Profile item styles */
 .profile-item {
-  position: relative; /* Ensure the popup is positioned correctly */
+  position: relative;
 }
 
 .profile-popup {
@@ -172,7 +167,7 @@ input:checked + .slider:before {
   border-radius: 5px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 100;
-  display: block;
+  display: none;
 }
 
 .profile-popup p {
@@ -189,7 +184,9 @@ input:checked + .slider:before {
   display: block;
 }
 
-/* Additional adjustments to the popup */
-.profile-item:hover .profile-popup {
-  display: block;
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
 }

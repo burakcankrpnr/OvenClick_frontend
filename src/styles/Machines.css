@@ -1,15 +1,13 @@
 body {
   margin: 0;
-  transition: background-color 0.3s, color 0.3s; 
+  transition: background-color 0.3s, color 0.3s;
   response: 100%;
-
 }
 
 .container-fluid {
   padding: 0px;
   height: 100%;
 }
-
 
 .d-flex {
   display: flex;
@@ -25,7 +23,7 @@ body {
   margin-top: 0px;
   color: rgb(0, 0, 0);
   cursor: pointer;
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
 
 .machine-card:hover {
@@ -77,11 +75,11 @@ body {
 }
 
 .status-online {
-  color: #28a745; 
+  color: #28a745;
 }
 
 .status-offline {
-  color: #dc3545; 
+  color: #dc3545;
 }
 
 .machine-actions {
@@ -142,68 +140,151 @@ body {
 }
 
 body.dark-mode {
-  background-color: #343a40; 
-  color: #ffffff; 
+  background-color: #343a40;
+  color: #ffffff;
 }
 
 body.dark-mode .machine-card {
-  background-color: #495057; 
-  color: #ffffff; 
+  background-color: #495057;
+  color: #ffffff;
 }
 
 body.dark-mode .status-online {
-  color: #28a745; 
+  color: #28a745;
 }
 
 body.dark-mode .status-offline {
-  color: #dc3545; 
+  color: #dc3545;
 }
 
 body.dark-mode .add-machine-form input,
 body.dark-mode .edit-machine-form input {
-  background-color: #6c757d; 
-  color: #ffffff; 
+  background-color: #6c757d;
+  color: #ffffff;
 }
 
 body.dark-mode .machine-actions .btn-info {
-  background-color: #495057; 
-  border-color: #495057; 
+  background-color: #495057;
+  border-color: #495057;
 }
 
 body.dark-mode .machine-add.button {
   background-color: #28a745 !important;
 }
 
-
-d-flex justify-content-between mb-4 {
+.d-flex.justify-content-between.mb-4 {
   justify-content: space-between;
   color: #000000;
-  background-color: #000000;
 }
+
 .pagination {
-  position: fixed; 
-  bottom: 0;       
-  left: 50%;       
+  position: fixed;
+  bottom: 0;
+  left: 50%;
   transform: translateX(-50%);
   display: flex;
   justify-content: center;
   gap: 10px;
   padding: 20px;
-  z-index: 100; 
+  z-index: 100;
 }
 
 .pagination button {
   padding: 10px 15px;
+  margin: 0 5px;
   border: 1px solid #ccc;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
   background: #fff;
   cursor: pointer;
-  border-radius: 50px; /* Düğmeleri yuvarlak yap */
+  border-radius: 50px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+  color: #000;
 }
 
 .pagination button.activ {
-  background-color: #525f6d; 
+  background-color: #525f6d;
   color: #fff;
   border: none;
-  border-radius: 50px; /* Aktif düğme de yuvarlak olsun */
+  border-radius: 50px;
+}
+
+body.dark-mode .modal-content {
+  background-color: #495057;
+  color: #ffffff;
+}
+
+body.dark-mode .modal-header {
+  background-color: #343a40;
+  color: #ffffff;
+}
+
+body.dark-mode .modal-title {
+  font-weight: bold;
+}
+
+body.dark-mode .modal-body {
+  background-color: #495057;
+  color: #ffffff;
+}
+
+body.dark-mode .modal-footer {
+  background-color: #343a40;
+  border-top: 1px solid #6c757d;
+}
+
+body.dark-mode .modal-footer button {
+  background-color: #6c757d;
+  color: #ffffff;
+  border: none;
+  padding: 8px 20px;
+  font-size: 1rem;
+}
+
+body.dark-mode .modal-footer button:hover {
+  background-color: #495057;
+}
+
+body.dark-mode .modal-body input,
+body.dark-mode .modal-body select,
+body.dark-mode .modal-body textarea {
+  background-color: #6c757d;
+  color: #ffffff;
+  border: 1px solid #495057;
+  padding: 8px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+body.dark-mode .modal-body input:focus,
+body.dark-mode .modal-body select:focus,
+body.dark-mode .modal-body textarea:focus {
+  outline-color: #28a745;
+}
+
+body.dark-mode .modal-body .btn-info {
+  background-color: #495057;
+  border-color: #495057;
+}
+
+body.dark-mode .modal-body .btn-info:hover {
+  background-color: #28a745;
+  color: #fff;
+}
+
+body.dark-mode .button.machine-add.button {
+  background-color: #666666 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 10px 20px !important;
+  font-size: 1rem !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.3s ease !important;
 }
 

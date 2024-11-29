@@ -34,6 +34,9 @@
     const [searchTerm, setSearchTerm] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 12;
+    const handlePageChange = (pageNumber) => {
+      setCurrentPage(pageNumber);
+    };
 
     useEffect(() => {
       const fetchMachines = async () => {
@@ -325,17 +328,29 @@
           ))}
         </div>
 
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentPage(index + 1)}
-              className={currentPage === index + 1 ? 'activ' : ''}
-            >
-              {index + 1}
-            </button>
-          ))}
-        </div>
+        <div className="pagination-container d-flex justify-content-center mt-4">
+  <ul className="pagination">
+    {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+      (pageNumber) => (
+        <li
+          key={pageNumber}
+          className={`page-item ${
+            pageNumber === currentPage ? "active" : ""
+          }`}
+        >
+          <button
+            className={`page-link ${
+              pageNumber !== currentPage ? "inactive-page" : ""
+            }`} 
+            onClick={() => handlePageChange(pageNumber)}
+          >
+            {pageNumber}
+          </button>
+        </li>
+      )
+    )}
+  </ul>
+</div>
 
         <ConfirmationModal
           show={showConfirmModal}

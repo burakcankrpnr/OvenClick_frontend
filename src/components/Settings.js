@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import {  FaEnvelope, FaUserAlt, FaIdBadge, FaUserShield,  } from 'react-icons/fa';
 import '../styles/Settings.css';
 
 const Settings = ({ user_id }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
-  
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -13,7 +11,6 @@ const Settings = ({ user_id }) => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
 
   if (!user) {
     return <div>Kullanıcı bilgileri bulunamadı.</div>;
@@ -23,14 +20,30 @@ const Settings = ({ user_id }) => {
     <div className="settings-container">
       <div className="profile-card">
         <div className="profile-header">
-          <h2>User Profile</h2>
+        {/* <FaUser className="icon"  />   */}
+          <h2>{user.username} 
+          </h2>
+          {user.role}
+
         </div>
         <div className="profile-body">
           <div className="profile-info">
-            <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Name:</strong> {user.username}</p>
-            <p><strong>ID:</strong> {user.user_id}</p>
-            <p><strong>Role:</strong> {user.role}</p>
+            <div className="info-item">
+            <p>
+            <FaEnvelope className="icon" /><strong>Email:</strong> {user.email} </p>
+            </div>
+            <div className="info-item">
+              <FaUserAlt className="icon" />
+              <p><strong>Name:</strong> {user.username}</p>
+            </div>
+            <div className="info-item">
+              <FaIdBadge className="icon" />
+              <p><strong>ID:</strong> {user.user_id}</p>
+            </div>
+            <div className="info-item">
+              <FaUserShield className="icon" />
+              <p><strong>Role:</strong> {user.role}</p>
+            </div>
           </div>
         </div>
       </div>

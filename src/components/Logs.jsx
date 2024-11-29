@@ -4,6 +4,7 @@ import '../../src/styles/Logs.css';
 
 const Logs = ({ machine_id }) => {  
   const [logs, setLogs] = useState([]);
+  
 
   useEffect(() => {
     axios.get(`/api/logs/${machine_id}`)

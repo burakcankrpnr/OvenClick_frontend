@@ -4,47 +4,57 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 20px;
+  padding: 140px;
+}
+
+
+@media (max-width: 768px) {
   .settings-container {
-    padding: 20px;
-    height: 100%;
-  }
-  
-  @media (max-width: 768px) {
-    .settings-container {
-      padding: 10px; /* Mobil için daha dar padding */
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .settings-container {
-      height: auto; /* Mobilde otomatik yüksekliği ayarla */
-    }
+    padding: 10px; 
   }
 }
 
+@media (max-width: 768px) {
+  .settings-container {
+    height: auto; 
+  }
+}
+
+/* Profil Kartı */
 .profile-card {
-  width: 100%;
+  width: 200%;
   max-width: 800px;
-  background: #ffffff;
+  background: #ffffff; /* Açık mod için beyaz */
   border-radius: 16px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   border: none;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 50px;
+}
+
+body.dark-mode .profile-card {
+  background: #2c2c2c; /* Koyu mod için koyu gri */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
 }
 
 .profile-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-/* Header Section */
+/* Profil Başlığı */
 .profile-header {
-  background: linear-gradient(135deg, #417d67, #285943);
+  background: linear-gradient(135deg, #00796b, #48a999); /* Açık mod için yeşil tonlar */
   color: #ffffff;
   padding: 30px 20px;
   text-align: center;
+  border-radius: 16px 16px 0 0;
+}
+
+body.dark-mode .profile-header {
+  background: linear-gradient(135deg, #004d40, #1de9b6); /* Koyu mod için daha derin yeşil */
+  color: #ffffff;
 }
 
 .profile-header h2 {
@@ -54,10 +64,16 @@
   letter-spacing: 0.5px;
 }
 
-/* Body Section */
+/* Profil Gövdesi */
 .profile-body {
   padding: 25px;
-  color: #444;
+  background: #f9f9f9; /* Açık mod için açık gri */
+  color: #333; /* Açık mod için koyu metin */
+}
+
+body.dark-mode .profile-body {
+  background: #333; /* Koyu mod için koyu gri */
+  color: #ccc; /* Koyu mod için açık metin */
 }
 
 .profile-info {
@@ -67,18 +83,22 @@
 .profile-info p {
   margin: 12px 0;
   font-size: 1rem;
-  color: #555;
   display: flex;
   align-items: center;
+  color: inherit; /* Mod'a bağlı metin rengi */
 }
 
 .profile-info strong {
-  color: #000000;
+  color: #00796b; /* Açık modda vurgu yeşil */
   margin-right: 8px;
   font-weight: 500;
 }
 
-/* Profile picture (optional) */
+body.dark-mode .profile-info strong {
+  color: #1de9b6; /* Koyu modda vurgu açık yeşil */
+}
+
+/* Profil Fotoğrafı (İsteğe Bağlı) */
 .profile-picture {
   width: 120px;
   height: 120px;
@@ -94,7 +114,11 @@
   color: #ffffff;
 }
 
-/* Button styling */
+body.dark-mode .profile-picture {
+  background-color: #555; /* Koyu mod için nötr bir arka plan */
+}
+
+/* Buton Stilleri */
 .profile-actions {
   display: flex;
   justify-content: space-around;
@@ -111,19 +135,35 @@
 }
 
 .profile-actions .btn-edit {
-  background-color: #000000;
+  background-color: #00796b; /* Açık modda yeşil */
   color: #ffffff;
+}
+
+body.dark-mode .profile-actions .btn-edit {
+  background-color: #004d40; /* Koyu modda daha koyu yeşil */
 }
 
 .profile-actions .btn-edit:hover {
-  background-color: #000000;
+  background-color: #48a999; /* Açık modda hover rengi */
+}
+
+body.dark-mode .profile-actions .btn-edit:hover {
+  background-color: #1de9b6; /* Koyu modda hover rengi */
 }
 
 .profile-actions .btn-delete {
-  background-color: #dc3545;
+  background-color: #dc3545; /* Açık mod için kırmızı */
   color: #ffffff;
 }
 
+body.dark-mode .btn-delete {
+  background-color: #b71c1c; /* Koyu modda daha koyu kırmızı */
+}
+
 .profile-actions .btn-delete:hover {
-  background-color: #c82333;
-} 
+  background-color: #c82333; /* Hover için biraz daha koyu kırmızı */
+}
+
+body.dark-mode .btn-delete:hover {
+  background-color: #d32f2f; /* Koyu mod hover rengi */
+}
