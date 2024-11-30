@@ -31,7 +31,7 @@
       >
         <ul className="menu">
           <li className="top-icon">
-          <b>BİLSOFT</b> <FaCogs className="icon" />
+          <b>OVEN CLİCK</b> <FaCogs className="icon" />
           </li>
           <li className={location.pathname === "/machines" ? "active" : ""}>
             <Link to="/machines" className="link">
